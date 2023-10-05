@@ -1,6 +1,6 @@
-﻿namespace Home_Work_11_2.Models
+﻿namespace Home_Work_11_2.Models.Clients
 {
-    internal class Passport
+    public class Passport
     {
         internal Guid Id { get; set; }
         internal int PassportSeries { get; set; }
