@@ -33,6 +33,15 @@
             Sum = sum;
         }
 
+        /// <summary>
+        /// Конструктор для создания банковского счёта нового клиента
+        /// </summary>
+        public BankAccount()
+        {
+            Id = Guid.NewGuid();
+            Sum = 0;
+        }
+
         // Создаем переменную делегата
         AccountHandler? taken;
 

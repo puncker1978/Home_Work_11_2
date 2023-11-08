@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_2.Views"
         mc:Ignorable="d"
-        Title="NewClientWindow" Height="450" Width="800">
+        Title="Новый клиент" Height="450" Width="1000">
     <Grid>
+
+        <!--<Label Content="Фамилия" Margin="10" VerticalAlignment="Top" HorizontalAlignment="left"/>
+        <TextBox  Height="30" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10 0 0 0" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
+
+        <Label Content="Email" Margin="25,100" VerticalAlignment="Top" HorizontalAlignment="left"/>
+        <TextBox  Height="30" Width="200" Text="{Binding Email}" Margin="25,125" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />-->
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Фамилия" Grid.Row="0" Grid.Column="0"
+                   VerticalAlignment="Bottom" Margin="10 0"/>
+        <TextBox Text="{Binding SecondName}" Grid.Row="1" Grid.Column="0"
+                 VerticalAlignment="Center" Margin="10"/>
         
+        <TextBlock Text="Имя" Grid.Row="0" Grid.Column="1"
+                   VerticalAlignment="Bottom" Margin="10 0"/>
+        <TextBox Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"
+                   VerticalAlignment="Center" Margin="10"/>
+        
+        <TextBlock Text="Отчество" Grid.Row="0" Grid.Column="2"
+                   VerticalAlignment="Bottom" Margin="10 0"/>
+        <TextBox Text="{Binding FirstName}" Grid.Row="1" Grid.Column="2"
+                   VerticalAlignment="Center" Margin="10"/>
+
+        <TextBlock Text="Пасспорт" Grid.Row="2"
+                   VerticalAlignment="Center" Margin="10"/>
+        <!--<Button Height="30" Command="{Binding AddUserCommand, UpdateSourceTrigger=PropertyChanged}" Content="Add" Width="70"  VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0" />-->
+
     </Grid>
 </Window>

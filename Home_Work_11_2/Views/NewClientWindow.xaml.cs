@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Home_Work_11_2.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace Home_Work_11_2.Views
         public NewClientWindow()
         {
             InitializeComponent();
+            NewClientViewModel newClientViewModel = new();
+            this.DataContext = newClientViewModel;
         }
     }
 }
