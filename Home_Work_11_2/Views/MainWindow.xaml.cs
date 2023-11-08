@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Home_Work_11_2.ViewModels;
+using Home_Work_11_2.Models;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Home_Work_11_2.Views
 {
@@ -22,6 +12,8 @@ namespace Home_Work_11_2.Views
         public MainWindow()
         {
             InitializeComponent();
+            MainWindowViewModel mainWindowViewModel = new();
+            this.DataContext = mainWindowViewModel;
         }
     }
 }

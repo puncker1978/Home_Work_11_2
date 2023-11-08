@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Home_Work_11_2.Views
 {
     /// <summary>
-    /// Логика взаимодействия для EditPersonWindow.xaml
+    /// Логика взаимодействия для EditClientWindow.xaml
     /// </summary>
-    public partial class EditPersonWindow : Window
+    public partial class EditClientWindow : Window
     {
-        public EditPersonWindow()
+        public EditClientWindow()
         {
             InitializeComponent();
         }

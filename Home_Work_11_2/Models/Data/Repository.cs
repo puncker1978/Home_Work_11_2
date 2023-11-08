@@ -23,5 +23,7 @@ namespace Home_Work_11_2.Models.Data
             RemoveClient(oldClient);
             AddClient(newClient);
         }
+
+        public static ObservableCollection<Client> GetClients() => Clients;
     }
 }

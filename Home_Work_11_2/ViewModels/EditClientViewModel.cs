@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Home_Work_11_2.ViewModels
 {
-    internal class NewPersonWindowViewModel
+    internal class EditClientViewModel
     {
     }
 }
