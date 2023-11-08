@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_2.Views"
         mc:Ignorable="d"
-        Title="Новый клиент" Height="450" Width="1000">
-    <Grid>
+        Title="Новый клиент" Height="500" Width="800">
+    <Grid Background="#F5F5F5">
 
         <!--<Label Content="Фамилия" Margin="10" VerticalAlignment="Top" HorizontalAlignment="left"/>
         <TextBox  Height="30" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Width="200" Margin="10 0 0 0" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />
@@ -14,42 +14,147 @@
         <Label Content="Email" Margin="25,100" VerticalAlignment="Top" HorizontalAlignment="left"/>
         <TextBox  Height="30" Width="200" Text="{Binding Email}" Margin="25,125" VerticalAlignment="Top" HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />-->
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.8*"/>
         </Grid.RowDefinitions>
-
-        <TextBlock Text="Фамилия" Grid.Row="0" Grid.Column="0"
-                   VerticalAlignment="Bottom" Margin="10 0"/>
-        <TextBox Text="{Binding SecondName}" Grid.Row="1" Grid.Column="0"
-                 VerticalAlignment="Center" Margin="10"/>
         
-        <TextBlock Text="Имя" Grid.Row="0" Grid.Column="1"
-                   VerticalAlignment="Bottom" Margin="10 0"/>
-        <TextBox Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"
-                   VerticalAlignment="Center" Margin="10"/>
-        
-        <TextBlock Text="Отчество" Grid.Row="0" Grid.Column="2"
-                   VerticalAlignment="Bottom" Margin="10 0"/>
-        <TextBox Text="{Binding FirstName}" Grid.Row="1" Grid.Column="2"
-                   VerticalAlignment="Center" Margin="10"/>
+        <Border Grid.Row="0" Margin="5 5 5 1"
+                BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-        <TextBlock Text="Пасспорт" Grid.Row="2"
-                   VerticalAlignment="Center" Margin="10"/>
-        <!--<Button Height="30" Command="{Binding AddUserCommand, UpdateSourceTrigger=PropertyChanged}" Content="Add" Width="70"  VerticalContentAlignment="Center" Padding="5" Margin="25" VerticalAlignment="Bottom" HorizontalAlignment="Right" BorderThickness="1" BorderBrush="#E0E0E0" />-->
+                <TextBlock Text="Фамилия" Grid.Row="0" Grid.Column="0"
+                   VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding SecondName}" Grid.Row="1" Grid.Column="0"
+                 VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Имя" Grid.Row="0" Grid.Column="1"
+                   VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"
+                   VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Отчество" Grid.Row="0" Grid.Column="2"
+                   VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding ThirdName}" Grid.Row="1" Grid.Column="2"
+                   VerticalAlignment="Center" Margin="10 1 10 5"/>
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Row="1" Margin="5 5 5 1"
+                BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Паспорт" Grid.Row="0"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+
+                <TextBlock Text="Серия" Grid.Row="1" Grid.Column="0"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding PassportSeries}" Grid.Row="4" Grid.Column="0"
+                         VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Номер" Grid.Row="1" Grid.Column="1"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding PassportNumber}" Grid.Row="4" Grid.Column="1"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Дата рождения" Grid.Row="1" Grid.Column="2"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding BirthDay}" Grid.Row="4" Grid.Column="2"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Margin="5 5 5 1"
+        BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Адрес" Grid.Row="0"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+
+                <TextBlock Text="Город" Grid.Row="1" Grid.Column="0"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding Town}" Grid.Row="2" Grid.Column="0"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Улица" Grid.Row="1" Grid.Column="1"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding Street}" Grid.Row="2" Grid.Column="1"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Дом" Grid.Row="1" Grid.Column="2"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding HouseNumber}" Grid.Row="2" Grid.Column="2"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Квартира" Grid.Row="1" Grid.Column="3"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox Text="{Binding FlatNumber}" Grid.Row="2" Grid.Column="3"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="3" Margin="5 5 5 1"
+                BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Счёт" Grid.Row="0" Grid.Column="0"
+                           VerticalAlignment="Center" Margin="10 0"/>
+                <TextBlock Text="Сумма на счёте" Grid.Row="1" Grid.Column="0"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+                <TextBox Text="{Binding Sum}" Grid.Row="1" Grid.Column="1"
+           VerticalAlignment="Center" Margin="10 1 10 5"/>
+            </Grid>
+        </Border>
+
+        <Button Grid.Row="4" 
+                Command="{Binding AddClientCommand, UpdateSourceTrigger=PropertyChanged}"
+                Content="Cохранить" Width="120" VerticalContentAlignment="Center"
+                Padding="5"
+                VerticalAlignment="Center" Margin="0 0 20 0" HorizontalAlignment="Right" 
+                BorderThickness="1" BorderBrush="#E0E0E0" />
 
     </Grid>
 </Window>

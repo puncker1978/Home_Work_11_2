@@ -38,7 +38,7 @@ namespace Home_Work_11_2.ViewModels
             NewClientWindow newClientWindow = new();
             newClientWindow.Owner = mainWindow;
             newClientWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            newClientWindow.Show();
+            newClientWindow.ShowDialog();
         }
     }
 }

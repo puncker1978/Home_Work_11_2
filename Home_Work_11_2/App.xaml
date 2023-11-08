@@ -37,7 +37,7 @@
 
         <Style TargetType="{x:Type Button}">
             <Setter Property="Foreground" Value="white"/>
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="Cursor" Value="Hand"/>
             
             <Setter Property="Template">
@@ -84,7 +84,7 @@
         <Style TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="MinWidth" Value="120"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             
             <Setter Property="Template">
                 <Setter.Value>
