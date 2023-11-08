@@ -11,7 +11,10 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListViewItem}">
-                        <Border Name="back" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                        <Border Name="back" Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            
                             <GridViewRowPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                       SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
@@ -42,15 +45,23 @@
                     <ControlTemplate TargetType="{x:Type Button}">
 
 
-                        <Border Name="back" CornerRadius="5" Padding="{TemplateBinding Padding}" Background="#212143" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                        <Border Name="back" CornerRadius="5" Padding="{TemplateBinding Padding}" Background="#212143"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="true">
+                            
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width ="20"/>
                                     <ColumnDefinition Width ="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Path Margin="5,0,0,0" Height="12" Width="12" SnapsToDevicePixels="True" Data="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z" Fill="White" Stretch="Uniform" VerticalAlignment="Center"  />
-                                <ContentPresenter Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <Path Margin="5,0,0,0" Height="12" Width="12" SnapsToDevicePixels="True"
+                                      Data="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
+                                      Fill="White" Stretch="Uniform" VerticalAlignment="Center"  />
+                                
+                                <ContentPresenter Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </Grid>
 
                         </Border>
@@ -82,7 +93,8 @@
                             </Grid.ColumnDefinitions>
 
                             <Border Name="bck" Grid.Column="0" BorderThickness="0" BorderBrush="Black" Height="35" Background="#F5F5F5">
-                                <ContentPresenter x:Name="ContentHeader" Content="{TemplateBinding Content}" VerticalAlignment="Center"  Margin="10,0" Width="{TemplateBinding Width}"  />
+                                <ContentPresenter x:Name="ContentHeader" Content="{TemplateBinding Content}" VerticalAlignment="Center" 
+                                                  Margin="10,0" Width="{TemplateBinding Width}"  />
                             </Border>
                             <Thumb Grid.Column="1" x:Name="PART_HeaderGripper"  Cursor="SizeWE">
                                 <Thumb.Style>
@@ -131,8 +143,11 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" Padding="0" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
-                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" VerticalContentAlignment="Center" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="2,5,2,2"/>
+                        <Border x:Name="border" Background="{TemplateBinding Background}" Padding="0" CornerRadius="5"
+                                BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True">
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" VerticalContentAlignment="Center"
+                                          HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="2,5,2,2"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="false">
