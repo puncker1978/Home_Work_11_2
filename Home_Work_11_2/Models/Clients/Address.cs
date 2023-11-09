@@ -31,6 +31,10 @@
             HouseNumber = houseNumber;
             FlatNumber = flatNumber;
         }
+
+        public Address()
+        {
+        }
         #endregion
     }
 }

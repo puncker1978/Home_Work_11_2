@@ -29,6 +29,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -36,19 +37,24 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Фамилия" Grid.Row="0" Grid.Column="0"
-                   VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding SecondName}" Grid.Row="1" Grid.Column="0"
-                 VerticalAlignment="Center" Margin="10 1 10 5"/>
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="SecondName" Text="{Binding SecondName}" Grid.Row="1" Grid.Column="0"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Имя" Grid.Row="0" Grid.Column="1"
-                   VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"
-                   VerticalAlignment="Center" Margin="10 1 10 5"/>
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name ="FirstName" Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Отчество" Grid.Row="0" Grid.Column="2"
-                   VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding ThirdName}" Grid.Row="1" Grid.Column="2"
-                   VerticalAlignment="Center" Margin="10 1 10 5"/>
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="ThirdName" Text="{Binding ThirdName}" Grid.Row="1" Grid.Column="2"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Телефон" Grid.Row="0" Grid.Column="3"
+                           VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="PhoneNumber" Text="{Binding PhoneNumber}" Grid.Row="1" Grid.Column="3"
+                           VerticalAlignment="Center" Margin="10 1 10 5"/>
             </Grid>
         </Border>
 
@@ -72,17 +78,17 @@
 
                 <TextBlock Text="Серия" Grid.Row="1" Grid.Column="0"
                            VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding PassportSeries}" Grid.Row="4" Grid.Column="0"
+                <TextBox x:Name="PassportSeries" Text="{Binding PassportSeries}" Grid.Row="4" Grid.Column="0"
                          VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Номер" Grid.Row="1" Grid.Column="1"
                            VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding PassportNumber}" Grid.Row="4" Grid.Column="1"
+                <TextBox x:Name="PassportNumber" Text="{Binding PassportNumber}" Grid.Row="4" Grid.Column="1"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Дата рождения" Grid.Row="1" Grid.Column="2"
                            VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding BirthDay}" Grid.Row="4" Grid.Column="2"
+                <TextBox x:Name="BirthDate" Text="{Binding BirthDate}" Grid.Row="4" Grid.Column="2"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
             </Grid>
         </Border>
@@ -107,22 +113,22 @@
 
                 <TextBlock Text="Город" Grid.Row="1" Grid.Column="0"
                            VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding Town}" Grid.Row="2" Grid.Column="0"
+                <TextBox x:Name="Town" Text="{Binding Town}" Grid.Row="2" Grid.Column="0"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Улица" Grid.Row="1" Grid.Column="1"
                            VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding Street}" Grid.Row="2" Grid.Column="1"
+                <TextBox x:Name="Street" Text="{Binding Street}" Grid.Row="2" Grid.Column="1"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Дом" Grid.Row="1" Grid.Column="2"
                            VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding HouseNumber}" Grid.Row="2" Grid.Column="2"
+                <TextBox x:Name="HouseNumber" Text="{Binding HouseNumber}" Grid.Row="2" Grid.Column="2"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Квартира" Grid.Row="1" Grid.Column="3"
                            VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox Text="{Binding FlatNumber}" Grid.Row="2" Grid.Column="3"
+                <TextBox x:Name="FlatNumber" Text="{Binding FlatNumber}" Grid.Row="2" Grid.Column="3"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
             </Grid>
         </Border>
@@ -144,13 +150,13 @@
                            VerticalAlignment="Center" Margin="10 0"/>
                 <TextBlock Text="Сумма на счёте" Grid.Row="1" Grid.Column="0"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
-                <TextBox Text="{Binding Sum}" Grid.Row="1" Grid.Column="1"
+                <TextBox x:Name="Sum" Text="{Binding Sum}" Grid.Row="1" Grid.Column="1"
            VerticalAlignment="Center" Margin="10 1 10 5"/>
             </Grid>
         </Border>
 
         <Button Grid.Row="4" 
-                Command="{Binding AddClientCommand, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding AddNewClientCommand, UpdateSourceTrigger=PropertyChanged}"
                 Content="Cохранить" Width="120" VerticalContentAlignment="Center"
                 Padding="5"
                 VerticalAlignment="Center" Margin="0 0 20 0" HorizontalAlignment="Right" 

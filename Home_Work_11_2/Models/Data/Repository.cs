@@ -14,14 +14,14 @@ namespace Home_Work_11_2.Models.Data
             new Client("Елена", "Васнецова", "Николаевна", "+7(902)341-75-12", new Passport(3838, "124536", new DateOnly(1978, 06, 21)), new Address("Омск", "ул. Театральная", "2б", "11"), new BankAccount(decimal.Parse("51236,12")))
         };
 
-        public static void AddClient(Client client) => Clients.Add(client);
+        public static void AddNewClient(Client client) => Clients.Add(client);
 
         public static void RemoveClient(Client client) => Clients.Remove(client);
 
         public static void EditClient(Client oldClient, Client newClient)
         {
             RemoveClient(oldClient);
-            AddClient(newClient);
+            AddNewClient(newClient);
         }
 
         public static ObservableCollection<Client> GetClients() => Clients;
