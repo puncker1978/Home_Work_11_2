@@ -10,11 +10,6 @@ namespace Home_Work_11_2.ViewModels
 {
     internal class MainWindowViewModel
     {
-        public string FirstName {  get; set; }
-        public string SecondName {  get; set; }
-        public string ThirdName { get; set; }
-        public string PhoneNumber { get; set; }
-
         public MainWindowViewModel()
         {
             Clients = Repository.GetClients();
@@ -35,9 +30,11 @@ namespace Home_Work_11_2.ViewModels
         {
             var mainWindow = obj as Window;
 
-            NewClientWindow newClientWindow = new();
-            newClientWindow.Owner = mainWindow;
-            newClientWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            NewClientWindow newClientWindow = new()
+            {
+                Owner = mainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
             newClientWindow.ShowDialog();
         }
     }
