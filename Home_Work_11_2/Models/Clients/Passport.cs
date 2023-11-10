@@ -2,12 +2,12 @@
 {
     public class Passport
     {
-        internal Guid Id { get; set; }
-        internal int PassportSeries { get; set; }
-        internal string PassportNumber { get; set; }
-        internal DateOnly BirthDate { get; set; }
+        public Guid Id { get; set; }
+        public int PassportSeries { get; set; }
+        public string PassportNumber { get; set; }
+        public DateTime BirthDate { get; set; }
 
-        public Passport(int passportSeries, string passportNumber, DateOnly birthDate)
+        public Passport(int passportSeries, string passportNumber, DateTime birthDate)
         {
             Id = Guid.NewGuid();
             PassportSeries = passportSeries;

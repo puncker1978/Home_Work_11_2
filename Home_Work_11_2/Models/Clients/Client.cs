@@ -30,7 +30,7 @@ namespace Home_Work_11_2.Models.Clients
         /// <summary>
         /// Банковский счёт клиента
         /// </summary>
-        public BankAccount Account { get; set; }
+        public BankAccount BankAccount { get; set; }
 
         /// <summary>
         /// Уникальный идентификационный номер клиента
@@ -41,6 +41,7 @@ namespace Home_Work_11_2.Models.Clients
         /// Номер телефона клиента
         /// </summary>
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
+        
         #endregion
 
         /// <summary>
@@ -59,14 +60,14 @@ namespace Home_Work_11_2.Models.Clients
                       string phoneNumber,
                       Passport passport,
                       Address address,
-                      BankAccount account) : base(firstName, secondName, thirdName)
+                      BankAccount bankAccount) : base(firstName, secondName, thirdName)
         {
 
             Id = Guid.NewGuid();
             PhoneNumber = phoneNumber;
             Passport = passport;
             Address = address;
-            Account = account;
+            BankAccount = bankAccount;
         }
     }
 }

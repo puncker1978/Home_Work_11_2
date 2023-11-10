@@ -11,21 +11,29 @@
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
             <!--<TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />-->
-            <Button CommandParameter="{x:Reference Name= mainwindow}"
+            <Button CommandParameter="{x:Reference Name=mainwindow}"
                     Command="{Binding ShowWindowCommand}"
                     Content="Новый клиент" Width="150" VerticalContentAlignment="Center" Padding="5"
                     Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right"
                     BorderThickness="1" BorderBrush="#E0E0E0"  />
             
-            <ListView Name="UserList" ItemsSource="{Binding Clients}" BorderBrush="#cdcdcd"
-                      Margin="25,70,25,25" Padding="0"
+            <ListView x:Name="Clients" ItemsSource="{Binding Clients}" BorderBrush="#cdcdcd"
+                      Margin="25,70,25,25" Padding="0" SelectedItem="{Binding SelectedClient}"
                       FontSize="20">
+                <ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Редакировать" Command="{Binding ShowWindowCommand}"/>
+                        <MenuItem Header="Удалить"></MenuItem>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding SecondName}" Header="Фамилия"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=SecondName}" Header="Фамилия"/>
                         <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="Имя"/>
                         <GridViewColumn DisplayMemberBinding="{Binding ThirdName}" Header="Отчество"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Passport.BirthDate}" Header="Дата рождения"/>
                         <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Телефон"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding BankAccount.Sum}" Header="Сумма на счёте"/>
                     </GridView>
                 </ListView.View>
             </ListView>

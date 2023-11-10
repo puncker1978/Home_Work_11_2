@@ -21,7 +21,8 @@ namespace Home_Work_11_2.ViewModels
         #region Паспорт
         private int passportSeries;
         private string passportNumber;
-        private DateOnly birthDate;
+        private DateTime birthDate;
+        private string birthDay;
         #endregion
 
         #region Адрес
@@ -33,18 +34,7 @@ namespace Home_Work_11_2.ViewModels
 
         #region Банковский счёт
         private decimal sum;
-        private string firstName1;
-        private string secondName1;
-        private string thirdName1;
-        private string phoneNumber1;
-        private int passportSeries1;
-        private string passportNumber1;
-        private DateOnly birthDate1;
-        private string town1;
-        private string street1;
-        private string houseNumber1;
-        private string flatNumber1;
-        private decimal sum1;
+        private string birthDay1;
         #endregion
 
         #endregion Поля
@@ -109,12 +99,21 @@ namespace Home_Work_11_2.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public DateOnly BirthDate
+        public DateTime BirthDate
         {
             get => birthDate;
             set
             {
                 birthDate = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public string BirthDay
+        {
+            get => birthDay;
+            set
+            {
+                birthDay = value;
                 NotifyPropertyChanged();
             }
         }
@@ -184,7 +183,10 @@ namespace Home_Work_11_2.ViewModels
         public ICommand AddNewClientCommand { get; set; }
         private bool CanAddNewClient(object obj)
         {
-            return !string.IsNullOrWhiteSpace(SecondName);
+            return !string.IsNullOrWhiteSpace(SecondName) && !string.IsNullOrWhiteSpace(FirstName) &&
+                !string.IsNullOrWhiteSpace(PhoneNumber) && !string.IsNullOrWhiteSpace(PassportSeries.ToString()) &&
+                !string.IsNullOrWhiteSpace(PassportNumber) && !string.IsNullOrWhiteSpace(BirthDate.ToString()) &&
+                !string.IsNullOrWhiteSpace(Town) && !string.IsNullOrWhiteSpace(Street)! && !string.IsNullOrWhiteSpace(HouseNumber);
         }
         private void AddNewClient(object obj)
         {

@@ -8,8 +8,19 @@ using System.Windows.Input;
 
 namespace Home_Work_11_2.ViewModels
 {
-    internal class MainWindowViewModel
+    internal class MainWindowViewModel : PropertyChangedBase
     {
+        private Client selectedClient;
+        public Client SelectedClient
+        {
+            get => selectedClient;
+            set
+            {
+                selectedClient = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public MainWindowViewModel()
         {
             Clients = Repository.GetClients();
@@ -20,7 +31,7 @@ namespace Home_Work_11_2.ViewModels
         public ObservableCollection<Client> Clients { get; set; }
 
         public ICommand ShowWindowCommand { get; set; }
-
+      
         private bool CanShowWindow(object obj)
         {
             return true;
