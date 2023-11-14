@@ -31,9 +31,16 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Path=SecondName}" Header="Фамилия"/>
                         <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="Имя"/>
                         <GridViewColumn DisplayMemberBinding="{Binding ThirdName}" Header="Отчество"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Passport.BirthDate}" Header="Дата рождения"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Телефон"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding BankAccount.Sum}" Header="Сумма на счёте"/>
+                        <GridViewColumn Header="Дата рождения">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Passport.BirthDate, StringFormat=dd.MM.yyyy}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Телефон" Width="160"/>
+                        <!--<GridViewColumn DisplayMemberBinding="{Binding BankAccount.Sum}" Header="Сумма на счёте"/>-->
+                        <GridViewColumn Header="Сумма на счёте" DisplayMemberBinding="{Binding BankAccount.Sum, StringFormat={}{0} руб.}" />
                     </GridView>
                 </ListView.View>
             </ListView>

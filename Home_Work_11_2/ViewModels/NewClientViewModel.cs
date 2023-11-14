@@ -21,7 +21,7 @@ namespace Home_Work_11_2.ViewModels
         #region Паспорт
         private int passportSeries;
         private string passportNumber;
-        private DateTime birthDate;
+        private DateOnly birthDate;
         private string birthDay;
         #endregion
 
@@ -99,7 +99,7 @@ namespace Home_Work_11_2.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public DateTime BirthDate
+        public DateOnly BirthDate
         {
             get => birthDate;
             set
