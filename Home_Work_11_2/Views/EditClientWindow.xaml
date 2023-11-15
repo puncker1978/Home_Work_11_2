@@ -5,8 +5,155 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_2.Views"
         mc:Ignorable="d"
-        Title="EditClientWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Редактирование клиента"
+        x:Name="editClientWindow" Height="500" Width="800">
+    <Grid Background="#F5F5F5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Margin="5 5 5 1"
+            BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Фамилия" Grid.Row="0" Grid.Column="0"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="SecondName" Text="{Binding SecondName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Имя" Grid.Row="0" Grid.Column="1"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name ="FirstName" Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Отчество" Grid.Row="0" Grid.Column="2"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="ThirdName" Text="{Binding ThirdName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="2"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Телефон" Grid.Row="0" Grid.Column="3"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="PhoneNumber" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1" Margin="5 5 5 1"
+            BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Паспорт" Grid.Row="0"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+
+                <TextBlock Text="Серия" Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="PassportSeries" Text="{Binding PassportSeries, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="0"
+                     VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Номер" Grid.Row="1" Grid.Column="1"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="PassportNumber" Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Дата рождения" Grid.Row="1" Grid.Column="2"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="BirthDate" Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Margin="5 5 5 1"
+    BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Адрес" Grid.Row="0"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+
+                <TextBlock Text="Город" Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="Town" Text="{Binding Town, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="0"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Улица" Grid.Row="1" Grid.Column="1"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="Street" Text="{Binding Street, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Дом" Grid.Row="1" Grid.Column="2"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="HouseNumber" Text="{Binding HouseNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="2"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+
+                <TextBlock Text="Квартира" Grid.Row="1" Grid.Column="3"
+                       VerticalAlignment="Bottom" Margin="10 0"/>
+                <TextBox x:Name="FlatNumber" Text="{Binding FlatNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="3"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="3" Margin="5 5 5 1"
+            BorderThickness="1" BorderBrush="LightGray" CornerRadius="5" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Счёт" Grid.Row="0" Grid.Column="0"
+                       VerticalAlignment="Center" Margin="10 0"/>
+                <TextBlock Text="Сумма на счёте" Grid.Row="1" Grid.Column="0"
+                       VerticalAlignment="Center" Margin="10 1 10 5"/>
+                <TextBox x:Name="Sum" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"
+       VerticalAlignment="Center" Margin="10 1 10 5"/>
+            </Grid>
+        </Border>
+
+        <Button Grid.Row="4" 
+            Command="{Binding AddNewClientCommand, UpdateSourceTrigger=PropertyChanged}"
+            Content="Cохранить" Width="120" VerticalContentAlignment="Center"
+            Padding="5"
+            VerticalAlignment="Center" Margin="0 0 20 0" HorizontalAlignment="Right" 
+            BorderThickness="1" BorderBrush="#E0E0E0" />
+
     </Grid>
 </Window>
