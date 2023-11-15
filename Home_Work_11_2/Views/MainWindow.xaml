@@ -21,7 +21,7 @@
                       Margin="25,70,25,25" Padding="0" SelectedItem="{Binding SelectedClient}"
                       FontSize="20">
                 <ListBox.ContextMenu>
-                    <ContextMenu>
+                    <ContextMenu IsEnabled="{Binding Employee.Flag}" >
                         <MenuItem Header="Редакировать" Command="{Binding ShowWindowCommand}"/>
                         <MenuItem Header="Удалить"></MenuItem>
                     </ContextMenu>
