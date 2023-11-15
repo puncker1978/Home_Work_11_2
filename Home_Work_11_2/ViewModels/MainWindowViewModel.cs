@@ -1,6 +1,7 @@
 ﻿using Home_Work_11_2.Infra;
 using Home_Work_11_2.Models.Clients;
 using Home_Work_11_2.Models.Data;
+using Home_Work_11_2.Models.Employees;
 using Home_Work_11_2.Views;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -21,6 +22,17 @@ namespace Home_Work_11_2.ViewModels
             }
         }
 
+        private Employee employee;
+        public Employee Employee
+        {
+            get => employee;
+            set
+            {
+                employee = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public MainWindowViewModel()
         {
             Clients = Repository.GetClients();
@@ -31,7 +43,7 @@ namespace Home_Work_11_2.ViewModels
         public ObservableCollection<Client> Clients { get; set; }
 
         public ICommand ShowWindowCommand { get; set; }
-      
+
         private bool CanShowWindow(object obj)
         {
             return true;

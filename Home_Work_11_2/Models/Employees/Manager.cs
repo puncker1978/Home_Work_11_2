@@ -5,6 +5,8 @@ namespace Home_Work_11_2.Models.Employees
 {
     internal class Manager : Employee, IClientDataMonitor
     {
+        public static readonly string Position = "Менеджер";
+
         #region Конструкторы
         public Manager(string firstName,
             string secondName,

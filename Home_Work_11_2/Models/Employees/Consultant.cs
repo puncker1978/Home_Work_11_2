@@ -5,13 +5,18 @@ namespace Home_Work_11_2.Models.Employees
 {
     internal class Consultant : Employee, IClientDataMonitor
     {
+        public static readonly string Position = "Консультант";
+
         #region Конструкторы
         public Consultant(string firstName,
             string secondName,
-            string thirdName) : base(firstName,
+            string thirdName
+            ) : base(firstName,
                 secondName, thirdName)
         {
         }
+
+
         #endregion
 
         #region Методы
