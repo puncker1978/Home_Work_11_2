@@ -11,49 +11,10 @@ namespace Home_Work_11_2.ViewModels
 {
     internal class MainWindowViewModel : PropertyChangedBase
     {
-        private Client selectedClient;
-        public Client SelectedClient
-        {
-            get => selectedClient;
-            set
-            {
-                selectedClient = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private Employee employee;
-        public Employee Employee
-        {
-            get => employee;
-            set
-            {
-                employee = value;
-                NotifyPropertyChanged();
-            }
-        }
-
-        private bool flag;
-        public bool Flag
-        {
-            get => flag;
-            set
-            {
-                flag = Position == "Менеджер";
-                NotifyPropertyChanged();
-            }
-        }
-
-        private string position;
-        public string Position
-        {
-            get => position;
-            set
-            {
-                position = value;
-                NotifyPropertyChanged();
-            }
-        }
+        public static bool Flag => Position == "Менеджер";
+        public static string? Position {  get; set; }
+        
+        public static Client? SelectedClient {  get; set; }
 
         public MainWindowViewModel(string position)
         {
@@ -78,7 +39,7 @@ namespace Home_Work_11_2.ViewModels
             NewClientWindow newClientWindow = new()
             {
                 Owner = mainWindow,
-                WindowStartupLocation = WindowStartupLocation.CenterOwner
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             newClientWindow.ShowDialog();
         }
