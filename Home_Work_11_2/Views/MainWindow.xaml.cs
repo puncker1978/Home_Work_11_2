@@ -13,11 +13,10 @@ namespace Home_Work_11_2.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(string Position)
         {
             InitializeComponent();
-            MainWindowViewModel mainWindowViewModel = new();
-            this.DataContext = mainWindowViewModel;
+            this.DataContext = new MainWindowViewModel(Position);
         }
     }
 }

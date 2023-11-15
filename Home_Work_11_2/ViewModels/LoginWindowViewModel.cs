@@ -12,12 +12,6 @@ namespace Home_Work_11_2.ViewModels
         public string[] Positions { get => positions; }
 
         private Employee employee;
-
-        public LoginWindowViewModel()
-        {
-            ShowMainWindowCommand = new RelayCommand(ShowMainWindow, CanShowMainWindow);
-        }
-
         public Employee Employee
         {
             get => employee;
@@ -28,26 +22,43 @@ namespace Home_Work_11_2.ViewModels
             }
         }
 
+
+        private string position;
+        public string Position
+        {
+            get => position;
+            set
+            {
+                position = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public ICommand ShowMainWindowCommand { get; set; }
 
         private bool CanShowMainWindow(object obj)
         {
-            return true;
+            return !string.IsNullOrEmpty(Position);
         }
 
         private void ShowMainWindow(object obj)
         {
-            MainWindow mainWindow = new();
+            MainWindow mainWindow = new(Position);
             mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            mainWindow.Show();
 
             //Получить ссылку на текущее окно
-            Window loginWindow = Application.Current.Windows.OfType<NewClientWindow>().SingleOrDefault(x => x.IsActive);
+            LoginWindow? loginWindow = Application.Current.Windows.OfType<LoginWindow>().SingleOrDefault(x => x.IsActive);
 
             // Закрыть текущее окно
             loginWindow?.Close();
+
+
+            mainWindow.Show();
         }
 
-
+        public LoginWindowViewModel()
+        {
+            ShowMainWindowCommand = new RelayCommand(ShowMainWindow, CanShowMainWindow);
+        }
     }
 }

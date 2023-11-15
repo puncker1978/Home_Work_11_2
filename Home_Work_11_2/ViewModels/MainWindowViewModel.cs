@@ -33,10 +33,32 @@ namespace Home_Work_11_2.ViewModels
             }
         }
 
-        public MainWindowViewModel()
+        private bool flag;
+        public bool Flag
+        {
+            get => flag;
+            set
+            {
+                flag = Position == "Менеджер";
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string position;
+        public string Position
+        {
+            get => position;
+            set
+            {
+                position = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public MainWindowViewModel(string position)
         {
             Clients = Repository.GetClients();
-
+            Position = position;
             ShowWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
         }
 
@@ -46,7 +68,7 @@ namespace Home_Work_11_2.ViewModels
 
         private bool CanShowWindow(object obj)
         {
-            return true;
+            return Position == "Менеджер";
         }
 
         private void ShowWindow(object obj)

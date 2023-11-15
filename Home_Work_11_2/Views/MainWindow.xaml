@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_2.Views"
         mc:Ignorable="d"
-        Title="Main" Height="650" Width="1000"
+        Title="{Binding Position}" Height="650" Width="1000"
         Name="mainwindow" WindowStartupLocation="CenterScreen">
 
     <Grid Background="#F5F5F5">
@@ -21,7 +21,7 @@
                       Margin="25,70,25,25" Padding="0" SelectedItem="{Binding SelectedClient}"
                       FontSize="20">
                 <ListBox.ContextMenu>
-                    <ContextMenu IsEnabled="{Binding Employee.Flag}" >
+                    <ContextMenu IsEnabled="{Binding Flag}" >
                         <MenuItem Header="Редакировать" Command="{Binding ShowWindowCommand}"/>
                         <MenuItem Header="Удалить"></MenuItem>
                     </ContextMenu>

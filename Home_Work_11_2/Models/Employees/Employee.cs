@@ -15,7 +15,6 @@ namespace Home_Work_11_2.Models.Employees
         /// <param name="firstName">Имя</param>
         /// <param name="secondName">Фамилия</param>
         /// <param name="thirdName">Отчество</param>
-        /// <param name="positionFlag">Доступность свойств окна</param>
         public Employee(string firstName,
                         string secondName,
                         string thirdName) : base(firstName, secondName, thirdName)

@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_2.Views"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="150" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="LoginWindow" Height="150" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
+        x:Name="loginwindow">
     <StackPanel>
         <ComboBox Height="30" Width="250" Margin="10 20"
                   ItemsSource="{Binding Positions}"
-                  SelectedItem="{Binding Employee.Position}">
+                  SelectedItem="{Binding Position}">
         </ComboBox>
         <Button Height="30" Width="100" Content="ОК"
                 Command="{Binding ShowMainWindowCommand, UpdateSourceTrigger=PropertyChanged}"/>
