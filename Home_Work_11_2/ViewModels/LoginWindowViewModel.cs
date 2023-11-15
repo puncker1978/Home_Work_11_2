@@ -37,12 +37,14 @@ namespace Home_Work_11_2.ViewModels
 
         private void ShowMainWindow(object obj)
         {
-            var loginWindow = obj as Window;
-
             MainWindow mainWindow = new();
             mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             mainWindow.Show();
 
+            //Получить ссылку на текущее окно
+            Window loginWindow = Application.Current.Windows.OfType<NewClientWindow>().SingleOrDefault(x => x.IsActive);
+
+            // Закрыть текущее окно
             loginWindow?.Close();
         }
 
