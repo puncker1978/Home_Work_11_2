@@ -149,7 +149,7 @@
         </Border>
 
         <Button Grid.Row="4" 
-            Command="{Binding AddNewClientCommand, UpdateSourceTrigger=PropertyChanged}"
+            Command="{Binding EditClientCommand, UpdateSourceTrigger=PropertyChanged}"
             Content="Cохранить" Width="120" VerticalContentAlignment="Center"
             Padding="5"
             VerticalAlignment="Center" Margin="0 0 20 0" HorizontalAlignment="Right" 

@@ -64,12 +64,13 @@ namespace Home_Work_11_2.ViewModels
         {
             var mainWindow = obj as Window;
 
-            EditClientWindow editClientWindow = new()
+            EditClientWindow editClientWindow = new(SelectedClient)
             {
                 Owner = mainWindow,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             editClientWindow.ShowDialog();
+            
         }
         #endregion
 

@@ -1,9 +1,4 @@
 ﻿using Home_Work_11_2.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Home_Work_11_2.Views
