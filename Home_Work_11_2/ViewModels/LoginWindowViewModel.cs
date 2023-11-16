@@ -8,8 +8,8 @@ namespace Home_Work_11_2.ViewModels
 {
     internal class LoginWindowViewModel : PropertyChangedBase
     {
-        private string[] positions = { "Консультант", "Менеджер" };
-        public string[] Positions { get => positions; }
+        private readonly string[] positions = { "Консультант", "Менеджер" };
+        public string[] Positions => positions;
 
         private Employee employee;
         public Employee Employee
@@ -51,7 +51,6 @@ namespace Home_Work_11_2.ViewModels
 
             // Закрыть текущее окно
             loginWindow?.Close();
-
 
             mainWindow.Show();
         }
