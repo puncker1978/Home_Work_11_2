@@ -2,6 +2,7 @@
 using Home_Work_11_2.Models.Clients;
 using Home_Work_11_2.Models.Data;
 using Home_Work_11_2.Views;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -99,13 +100,15 @@ namespace Home_Work_11_2.ViewModels
         }
         public DateOnly BirthDate
         {
-            get => birthDate;
+            get => DateOnly.Parse(BirthDay);
             set
             {
                 birthDate = value;
                 NotifyPropertyChanged();
             }
         }
+        public string BirthDay { get; set; }
+        
         #endregion
 
         #region Адрес

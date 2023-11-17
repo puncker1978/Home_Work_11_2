@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_2.Views"
         mc:Ignorable="d"
+        xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="Новый клиент"
         x:Name="AddNewClientWindow" Height="500" Width="800">
     <Grid Background="#F5F5F5">
@@ -54,7 +55,8 @@
 
                 <TextBlock Text="Телефон" Grid.Row="0" Grid.Column="3"
                            VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox x:Name="PhoneNumber" Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3"
+                <wpfx:MaskedTextBox x:Name="PhoneNumber" Mask="+0(000)000-00-00"
+                                    Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
             </Grid>
         </Border>
@@ -77,19 +79,19 @@
                            VerticalAlignment="Bottom" Margin="10 0"/>
 
                 <TextBlock Text="Серия" Grid.Row="1" Grid.Column="0"
-                           VerticalAlignment="Bottom" Margin="10 0"/>
+                           VerticalAlignment="Bottom" Margin="10 5"/>
                 <TextBox x:Name="PassportSeries" Text="{Binding PassportSeries, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="0"
                          VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Номер" Grid.Row="1" Grid.Column="1"
-                           VerticalAlignment="Bottom" Margin="10 0"/>
+                           VerticalAlignment="Bottom" Margin="10 5"/>
                 <TextBox x:Name="PassportNumber" Text="{Binding PassportNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
 
                 <TextBlock Text="Дата рождения" Grid.Row="1" Grid.Column="2"
-                           VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox x:Name="BirthDate" Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
-                           VerticalAlignment="Center" Margin="10 1 10 5"/>
+                           VerticalAlignment="Bottom" Margin="10 5"/>
+                <TextBox x:Name="BirthDay" Text="{Binding BirthDay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
+                           VerticalAlignment="Center" Margin="10 1 10 5" />
             </Grid>
         </Border>
 

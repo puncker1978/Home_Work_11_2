@@ -81,7 +81,7 @@
 
                 <TextBlock Text="Дата рождения" Grid.Row="1" Grid.Column="2"
                        VerticalAlignment="Bottom" Margin="10 0"/>
-                <TextBox x:Name="BirthDate" Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
+                <TextBox x:Name="BirthDay" Text="{Binding BirthDay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
                        VerticalAlignment="Center" Margin="10 1 10 5"/>
             </Grid>
         </Border>
