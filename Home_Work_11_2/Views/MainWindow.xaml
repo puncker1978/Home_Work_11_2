@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Home_Work_11_2.Views"
         mc:Ignorable="d"
         Title="{Binding Position}" Height="650" Width="1000"
-        Name="mainwindow" WindowStartupLocation="CenterScreen">
+        x:Name="mainwindow" WindowStartupLocation="CenterScreen">
 
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
@@ -36,12 +36,11 @@
                         <GridViewColumn Header="Дата рождения">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Passport.BirthDate, StringFormat=dd.MM.yyyy}"/>
+                                    <TextBlock Text="{Binding Passport.BirthDate, StringFormat='dd.MM.yyyy'}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Телефон" Width="160"/>
-                        <!--<GridViewColumn DisplayMemberBinding="{Binding BankAccount.Sum}" Header="Сумма на счёте"/>-->
                         <GridViewColumn Header="Сумма на счёте" DisplayMemberBinding="{Binding BankAccount.Sum, StringFormat={}{0} руб.}" />
                     </GridView>
                 </ListView.View>

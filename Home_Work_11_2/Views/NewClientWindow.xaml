@@ -90,8 +90,12 @@
 
                 <TextBlock Text="Дата рождения" Grid.Row="1" Grid.Column="2"
                            VerticalAlignment="Bottom" Margin="10 5"/>
-                <TextBox x:Name="BirthDay" Text="{Binding BirthDay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
-                           VerticalAlignment="Center" Margin="10 1 10 5" />
+                <!--<wpfx:MaskedTextBox x:Name="BirthDate" Mask="00/00/0000" Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
+                           VerticalAlignment="Center" Margin="10 1 10 5" />-->
+                <DatePicker x:Name="BirthDate" Text="{Binding BirthDate, Mode=TwoWay, StringFormat='dd.MM.yyyy'}"
+                         Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Center"
+                         VerticalAlignment="Center" Margin="10 1 10 5" />
+                
             </Grid>
         </Border>
 

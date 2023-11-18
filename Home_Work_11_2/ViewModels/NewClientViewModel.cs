@@ -100,15 +100,14 @@ namespace Home_Work_11_2.ViewModels
         }
         public DateOnly BirthDate
         {
-            get => DateOnly.Parse(BirthDay);
+            get => birthDate;
             set
             {
                 birthDate = value;
                 NotifyPropertyChanged();
             }
         }
-        public string BirthDay { get; set; }
-        
+
         #endregion
 
         #region Адрес

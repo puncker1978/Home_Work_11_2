@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System.Configuration;
+using System.Data;
+using System.Windows;
 
-namespace Home_Work_11_2
+namespace WorkWithDateTest
 {
     /// <summary>
     /// Interaction logic for App.xaml
