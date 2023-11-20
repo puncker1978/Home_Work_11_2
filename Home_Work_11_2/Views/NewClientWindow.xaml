@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         xmlns:wpfx="http://schemas.xceed.com/wpf/xaml/toolkit"
         Title="Новый клиент"
-        x:Name="AddNewClientWindow" Height="500" Width="800">
+        x:Name="AddNewClientWindow" Height="500" Width="800"
+        Language="ru-RU">
     <Grid Background="#F5F5F5">
 
         <!--<Label Content="Фамилия" Margin="10" VerticalAlignment="Top" HorizontalAlignment="left"/>
@@ -93,7 +94,7 @@
                            VerticalAlignment="Bottom" Margin="10 5"/>
                 <!--<wpfx:MaskedTextBox x:Name="BirthDate" Mask="00/00/0000" Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
                            VerticalAlignment="Center" Margin="10 1 10 5" />-->
-                <DatePicker x:Name="BirthDate" Text="{Binding BirthDate, Mode=TwoWay}"
+                <DatePicker x:Name="BirthDate" SelectedDate="01.30.1900" SelectedDateFormat="Long"  Text="{Binding BirthDate, Mode=TwoWay}"
                          Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Top"
                          VerticalAlignment="Center" Margin="10 1 10 5" />
                 
