@@ -18,8 +18,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="1.2*"/>
-            <RowDefinition Height="1.2*"/>
+            <RowDefinition Height="1.4*"/>
+            <RowDefinition Height="1.4*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="0.8*"/>
         </Grid.RowDefinitions>
@@ -56,7 +56,8 @@
                 <TextBlock Text="Телефон" Grid.Row="0" Grid.Column="3"
                            VerticalAlignment="Bottom" Margin="10 0"/>
                 <wpfx:MaskedTextBox x:Name="PhoneNumber" Mask="+0(000)000-00-00"
-                                    Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="3"
+                                    Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                                    Grid.Row="1" Grid.Column="3" Height="30" VerticalContentAlignment="Center"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
             </Grid>
         </Border>
@@ -70,13 +71,13 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1.2*"/>
                     <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition Height="1.2*"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Паспорт" Grid.Row="0"
-                           VerticalAlignment="Bottom" Margin="10 0"/>
+                           VerticalAlignment="Top" Margin="10"/>
 
                 <TextBlock Text="Серия" Grid.Row="1" Grid.Column="0"
                            VerticalAlignment="Bottom" Margin="10 5"/>
@@ -92,8 +93,8 @@
                            VerticalAlignment="Bottom" Margin="10 5"/>
                 <!--<wpfx:MaskedTextBox x:Name="BirthDate" Mask="00/00/0000" Text="{Binding BirthDate, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="2"
                            VerticalAlignment="Center" Margin="10 1 10 5" />-->
-                <DatePicker x:Name="BirthDate" Text="{Binding BirthDate, Mode=TwoWay, StringFormat='dd.MM.yyyy'}"
-                         Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Center"
+                <DatePicker x:Name="BirthDate" Text="{Binding BirthDate, Mode=TwoWay}"
+                         Grid.Row="4" Grid.Column="2" VerticalContentAlignment="Top"
                          VerticalAlignment="Center" Margin="10 1 10 5" />
                 
             </Grid>
@@ -156,7 +157,8 @@
                            VerticalAlignment="Center" Margin="10 0"/>
                 <TextBlock Text="Сумма на счёте" Grid.Row="1" Grid.Column="0"
                            VerticalAlignment="Center" Margin="10 1 10 5"/>
-                <TextBox x:Name="Sum" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"
+                <TextBox x:Name="Sum" Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Row="1" Grid.Column="1"
            VerticalAlignment="Center" Margin="10 1 10 5"/>
             </Grid>
         </Border>
