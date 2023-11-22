@@ -1,9 +1,7 @@
 ﻿using Home_Work_11_2.Infra;
 using Home_Work_11_2.Models.Clients;
 using Home_Work_11_2.Models.Data;
-using Home_Work_11_2.Models.Employees;
 using Home_Work_11_2.Views;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,12 +14,11 @@ namespace Home_Work_11_2.ViewModels
         #endregion
 
         #region Свойства
-        public static string FindText { get; set; }
+        public static string SearchText { get; set; }
         public static string? Position { get; set; }
         public static Client? SelectedClient { get; set; }
         public static Client Client { get; set; }
         public IEnumerable<Client> Clients { get; set; }
-        public IEnumerable<Client> ClientList { get; set; }
         #endregion
 
         #region Конструкторы
@@ -32,7 +29,7 @@ namespace Home_Work_11_2.ViewModels
             ShowAddNewClientWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
             DeleteClientCommand = new RelayCommand(DeleteClient, CanDeleteClient);
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
-            FindClientCommand = new RelayCommand(FindClient, CanFindClient);
+            SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
         }
         #endregion
 
@@ -89,17 +86,18 @@ namespace Home_Work_11_2.ViewModels
         {
             Repository.RemoveClient(SelectedClient);
         }
+        #endregion
 
-
-        public ICommand FindClientCommand { get; set; }
-        private bool CanFindClient(object obj)
+        #region Команда поиска клиента
+        //Команда для поиска клиента
+        public ICommand SearchClientCommand { get; set; }
+        private bool CanSearchClient(object obj)
         {
-            return !string.IsNullOrWhiteSpace(FindText);
+            return !string.IsNullOrWhiteSpace(SearchText);
         }
-        private void FindClient(object obj)
+        private void SearchClient(object obj)
         {
-            Client = (Client)obj;
-            var SelectedClient = Clients.Where(client => client.SecondName.ToUpper().StartsWith(FindText));
+            //??????????
         }
         #endregion
         #endregion Команды
