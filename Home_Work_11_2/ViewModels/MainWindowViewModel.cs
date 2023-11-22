@@ -16,9 +16,12 @@ namespace Home_Work_11_2.ViewModels
         #endregion
 
         #region Свойства
+        public static string FindText { get; set; }
         public static string? Position { get; set; }
         public static Client? SelectedClient { get; set; }
+        public static Client Client { get; set; }
         public IEnumerable<Client> Clients { get; set; }
+        public IEnumerable<Client> ClientList { get; set; }
         #endregion
 
         #region Конструкторы
@@ -29,6 +32,7 @@ namespace Home_Work_11_2.ViewModels
             ShowAddNewClientWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
             DeleteClientCommand = new RelayCommand(DeleteClient, CanDeleteClient);
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
+            FindClientCommand = new RelayCommand(FindClient, CanFindClient);
         }
         #endregion
 
@@ -84,6 +88,18 @@ namespace Home_Work_11_2.ViewModels
         private void DeleteClient(object obj)
         {
             Repository.RemoveClient(SelectedClient);
+        }
+
+
+        public ICommand FindClientCommand { get; set; }
+        private bool CanFindClient(object obj)
+        {
+            return !string.IsNullOrWhiteSpace(FindText);
+        }
+        private void FindClient(object obj)
+        {
+            Client = (Client)obj;
+            var SelectedClient = Clients.Where(client => client.SecondName.ToUpper().StartsWith(FindText));
         }
         #endregion
         #endregion Команды

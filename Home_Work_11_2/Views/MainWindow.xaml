@@ -11,14 +11,19 @@
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
             <!--<TextBox Name="FilterTextBox" TextChanged="FilterTextBox_TextChanged" Height="30" Width="200" Margin="25" VerticalAlignment="Top"  HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0" />-->
+            <TextBox Name="FindTextBox" Text="{Binding FindText, UpdateSourceTrigger=PropertyChanged}"
+                     Height="30" Width="200" Margin="25" VerticalAlignment="Top"
+                     HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0"/>
+            
             <Button CommandParameter="{x:Reference Name=mainwindow}"
                     Command="{Binding ShowAddNewClientWindowCommand}"
                     Content="Новый клиент" Width="150" VerticalContentAlignment="Center" Padding="5"
                     Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right"
                     BorderThickness="1" BorderBrush="#E0E0E0"  />
             
-            <ListView x:Name="Clients" ItemsSource="{Binding Clients}" BorderBrush="#cdcdcd"
-                      Margin="25,70,25,25" Padding="0" SelectedItem="{Binding SelectedClient}"
+            <ListView x:Name="ClientList" ItemsSource="{Binding Clients}" BorderBrush="#cdcdcd"
+                      Margin="25,70,25,25" Padding="0"
+                      SelectedItem="{Binding SelectedClient, UpdateSourceTrigger=PropertyChanged}"
                       FontSize="20">
                 <ListBox.ContextMenu>
                     <ContextMenu  >
