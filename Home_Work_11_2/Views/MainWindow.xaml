@@ -10,10 +10,14 @@
 
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
+            <StackPanel Orientation="Horizontal">
             <TextBox x:Name="SearchTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                      Height="30" Width="200" Margin="25" VerticalAlignment="Top"
                      HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0"/>
-            
+            <Button x:Name="SearchButton" Height="30" Width="30" VerticalAlignment="Top" Margin="0 25"
+                    Command="{Binding SearchClientCommand}"/>
+            </StackPanel>
+        
             <Button CommandParameter="{x:Reference Name=mainwindow}"
                     Command="{Binding ShowAddNewClientWindowCommand}"
                     Content="Новый клиент" Width="150" VerticalContentAlignment="Center" Padding="5"

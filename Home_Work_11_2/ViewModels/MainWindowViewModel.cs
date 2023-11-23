@@ -129,7 +129,7 @@ namespace Home_Work_11_2.ViewModels
         }
         private void SearchClient(object obj)
         {
-            //??????????
+            UpdateFilteredClients();
         }
         #endregion
         #endregion Команды
