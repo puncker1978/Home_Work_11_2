@@ -2,6 +2,7 @@
 using Home_Work_11_2.Models.Clients;
 using Home_Work_11_2.Models.Data;
 using Home_Work_11_2.Views;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,21 +11,47 @@ namespace Home_Work_11_2.ViewModels
     internal class MainWindowViewModel : PropertyChangedBase
     {
         #region Поля
-        public static bool Flag => Position == "Менеджер";
+        private string _searchText;
         #endregion
 
         #region Свойства
-        public static string SearchText { get; set; }
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    NotifyPropertyChanged();
+                    UpdateFilteredClients();
+                }
+            }
+        }
+
+        private void UpdateFilteredClients()
+        {
+            if(string.IsNullOrWhiteSpace(SearchText))
+            {
+                FilteredClients = new ObservableCollection<Client>(Clients);
+            }
+            else
+            {
+                //FilteredClients = new ObservableCollection<Client>(Clients).Where(client =>
+                //client.FirstName.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+            }
+        }
+
         public static string? Position { get; set; }
         public static Client? SelectedClient { get; set; }
-        public static Client Client { get; set; }
-        public IEnumerable<Client> Clients { get; set; }
+        public ObservableCollection<Client> FilteredClients { get; set; }
+        public ObservableCollection<Client> Clients { get; set; }
         #endregion
 
         #region Конструкторы
         public MainWindowViewModel(string position)
         {
-            Clients = Repository.GetClients();
+            FilteredClients = Repository.GetClients();
             Position = position;
             ShowAddNewClientWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
             DeleteClientCommand = new RelayCommand(DeleteClient, CanDeleteClient);

@@ -10,7 +10,7 @@
 
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
-            <TextBox Name="SearchTextBox" Text="{Binding SearchString, UpdateSourceTrigger=PropertyChanged}"
+            <TextBox x:Name="SearchTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                      Height="30" Width="200" Margin="25" VerticalAlignment="Top"
                      HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0"/>
             
@@ -20,7 +20,8 @@
                     Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right"
                     BorderThickness="1" BorderBrush="#E0E0E0"  />
             
-            <ListView x:Name="ClientList" ItemsSource="{Binding Clients}" BorderBrush="#cdcdcd"
+            <ListView x:Name="ClientList" ItemsSource="{Binding FilteredClients}"
+                      BorderBrush="#cdcdcd"
                       Margin="25,70,25,25" Padding="0"
                       SelectedItem="{Binding SelectedClient, UpdateSourceTrigger=PropertyChanged}"
                       FontSize="20">
