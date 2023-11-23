@@ -14,6 +14,24 @@ namespace Home_Work_11_2.ViewModels
         private string _searchText;
         #endregion
 
+        #region Методы
+        private void UpdateFilteredClients()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                FilteredClients = new ObservableCollection<Client>(Clients);
+            }
+            else
+            {
+                FilteredClients = new ObservableCollection<Client>(
+                    Clients.Where(
+                        client => client.FirstName.Contains(
+                            SearchText, StringComparison.OrdinalIgnoreCase)));
+            }
+        }
+        #endregion
+
+
         #region Свойства
         public string SearchText
         {
@@ -23,25 +41,11 @@ namespace Home_Work_11_2.ViewModels
                 if (_searchText != value)
                 {
                     _searchText = value;
-                    NotifyPropertyChanged();
+                    NotifyPropertyChanged(nameof(SearchText));
                     UpdateFilteredClients();
                 }
             }
         }
-
-        private void UpdateFilteredClients()
-        {
-            if(string.IsNullOrWhiteSpace(SearchText))
-            {
-                FilteredClients = new ObservableCollection<Client>(Clients);
-            }
-            else
-            {
-                //FilteredClients = new ObservableCollection<Client>(Clients).Where(client =>
-                //client.FirstName.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
-            }
-        }
-
         public static string? Position { get; set; }
         public static Client? SelectedClient { get; set; }
         public ObservableCollection<Client> FilteredClients { get; set; }
@@ -51,6 +55,7 @@ namespace Home_Work_11_2.ViewModels
         #region Конструкторы
         public MainWindowViewModel(string position)
         {
+            Clients = Repository.GetClients();
             FilteredClients = Repository.GetClients();
             Position = position;
             ShowAddNewClientWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
