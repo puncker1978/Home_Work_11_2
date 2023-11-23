@@ -12,7 +12,7 @@ namespace Home_Work_11_2.ViewModels
     {
         #region Поля
         private string _searchText;
-        #endregion
+        #endregion Поля
 
         #region Методы
         private void UpdateFilteredClients()
