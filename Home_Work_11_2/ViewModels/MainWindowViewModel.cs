@@ -12,25 +12,8 @@ namespace Home_Work_11_2.ViewModels
     {
         #region Поля
         private string _searchText;
+        private ObservableCollection<Client> filteredClients;
         #endregion Поля
-
-        #region Методы
-        private void UpdateFilteredClients()
-        {
-            if (string.IsNullOrWhiteSpace(SearchText))
-            {
-                FilteredClients = new ObservableCollection<Client>(Clients);
-            }
-            else
-            {
-                FilteredClients = new ObservableCollection<Client>(
-                    Clients.Where(
-                        client => client.FirstName.Contains(
-                            SearchText, StringComparison.OrdinalIgnoreCase)));
-            }
-        }
-        #endregion
-
 
         #region Свойства
         public string SearchText
@@ -48,7 +31,15 @@ namespace Home_Work_11_2.ViewModels
         }
         public static string? Position { get; set; }
         public static Client? SelectedClient { get; set; }
-        public ObservableCollection<Client> FilteredClients { get; set; }
+        public ObservableCollection<Client> FilteredClients
+        {
+            get => filteredClients;
+            set
+            {
+                filteredClients = value;
+                NotifyPropertyChanged(nameof(FilteredClients));
+            }
+        }
         public ObservableCollection<Client> Clients { get; set; }
         #endregion
 
@@ -62,6 +53,23 @@ namespace Home_Work_11_2.ViewModels
             DeleteClientCommand = new RelayCommand(DeleteClient, CanDeleteClient);
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
             SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
+        }
+        #endregion
+
+        #region Методы
+        private void UpdateFilteredClients()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+            {
+                FilteredClients = new ObservableCollection<Client>(Clients);
+            }
+            else
+            {
+                FilteredClients = new ObservableCollection<Client>(
+                    FilteredClients.Where(
+                        client => client.FirstName.Contains(
+                            SearchText, StringComparison.OrdinalIgnoreCase)));
+            }
         }
         #endregion
 
