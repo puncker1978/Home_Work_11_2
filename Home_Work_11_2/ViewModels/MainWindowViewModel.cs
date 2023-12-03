@@ -10,6 +10,11 @@ namespace Home_Work_11_2.ViewModels
 {
     internal class MainWindowViewModel : PropertyChangedBase
     {
+        #region Константы
+        private readonly string[] colNames = { "Фамилия", "Имя", "Отчество", "Дата рождения", "Сумма на счёте", "Телефон" };
+        private readonly string[] sortDirection = { "По возрастанию", "По убыванию" };
+        #endregion Константы
+
         #region Поля
         private string _searchText;
         private ObservableCollection<Client> filteredClients;
@@ -41,7 +46,11 @@ namespace Home_Work_11_2.ViewModels
             }
         }
         public ObservableCollection<Client> Clients { get; set; }
-        #endregion
+        public string[] ColNames => colNames;
+        public string[] SortDirection => sortDirection;
+        public string SortByProperty { get; set; }
+        public string ThenByProperty {  get; set; }
+        #endregion Свойства
 
         #region Конструкторы
         public MainWindowViewModel(string position)
@@ -53,8 +62,14 @@ namespace Home_Work_11_2.ViewModels
             DeleteClientCommand = new RelayCommand(DeleteClient, CanDeleteClient);
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
             SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
+            ShowSortClientWindowCommand = new RelayCommand(ShowSortClientWindow, CanShowSortClientWindow);
         }
-        #endregion
+
+        public MainWindowViewModel()
+        {
+
+        }
+        #endregion Конструкторы
 
         #region Методы
         private void UpdateFilteredClients()
@@ -71,7 +86,7 @@ namespace Home_Work_11_2.ViewModels
                             SearchText, StringComparison.OrdinalIgnoreCase)));
             }
         }
-        #endregion
+        #endregion Методы
 
         #region Команды
         #region Команда открытия окна для добавления нового клиента
@@ -112,6 +127,27 @@ namespace Home_Work_11_2.ViewModels
             };
             editClientWindow.ShowDialog();
             
+        }
+        #endregion
+
+        #region Команда открытия окна для сортировки клиентов
+        //Команда открытия окна для редактирования клиента
+        public ICommand ShowSortClientWindowCommand { get; set; }
+        private bool CanShowSortClientWindow(object obj)
+        {
+            return true;
+        }
+        private void ShowSortClientWindow(object obj)
+        {
+            var mainWindow = obj as Window;
+
+            SortClientWindow sortClientWindow = new()
+            {
+                Owner = mainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+            sortClientWindow.ShowDialog();
+
         }
         #endregion
 
