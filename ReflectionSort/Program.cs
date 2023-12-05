@@ -1,4 +1,5 @@
-﻿using static ReflectionSort.Repository;
+﻿using System.Reflection;
+using static ReflectionSort.Repository;
 
 namespace ReflectionSort
 {
@@ -6,30 +7,28 @@ namespace ReflectionSort
     {
         static void Main(string[] args)
         {
-            foreach (Person person in Persons)
-            {
-                Console.WriteLine($"{person.FirstName}\t {person.LastName}\t {person.Age}");
-            }
-            Console.WriteLine();
-
-
-
-            Type type = typeof(Person);
-            var prop1 = type.GetProperty("LastName");
-            var prop2 = type.GetProperty("FirstName");
-
-
-            List<Person> sortedPersons = (from person in Persons
-                                          orderby person.GetType().GetProperty("LastName").Name
-                                          select person) as List<Person>;
-
-
-            foreach (Person person in sortedPersons)
+            string sortBy = "LastName";
+            string thenBy = "FirstName";
+            List<Person> sortedPeople = SortList(Persons, sortBy, thenBy);
+            foreach (Person person in sortedPeople)
             {
                 Console.WriteLine($"{person.FirstName}\t {person.LastName}\t {person.Age}");
             }
 
-
+            static List<Person> SortList(List<Person> list, string sortBy, string thenBy)
+            {
+                PropertyInfo property1 = typeof(Person).GetProperty(sortBy);
+                PropertyInfo property2 = typeof(Person).GetProperty(thenBy);
+                if (property1 != null && property2 != null)
+                {
+                    return [.. list.OrderBy(x => property1.GetValue(x, null)).ThenBy(x => property2.GetValue(x, null))];
+                }
+                else
+                {
+                    Console.WriteLine($"Свойство {sortBy} не найдено");
+                    return list;
+                }
+            }
             Console.ReadKey();
         }
     }
