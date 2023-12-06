@@ -17,15 +17,15 @@ namespace ReflectionSort
 
             static List<Person> SortList(List<Person> list, string sortBy, string thenBy)
             {
-                PropertyInfo property1 = typeof(Person).GetProperty(sortBy);
-                PropertyInfo property2 = typeof(Person).GetProperty(thenBy);
+                PropertyInfo? property1 = typeof(Person).GetProperty(sortBy);
+                PropertyInfo? property2 = typeof(Person).GetProperty(thenBy);
                 if (property1 != null && property2 != null)
                 {
                     return [.. list.OrderBy(x => property1.GetValue(x, null)).ThenBy(x => property2.GetValue(x, null))];
                 }
                 else
                 {
-                    Console.WriteLine($"Свойство {sortBy} не найдено");
+                    Console.WriteLine($"Свойство {sortBy}  или {thenBy} не найдено");
                     return list;
                 }
             }
