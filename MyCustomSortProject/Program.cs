@@ -16,10 +16,14 @@ namespace MyCustomSortProject
                 [thenBy] = 1
             };
 
-            foreach (Person person in Persons)
-            {
-                Console.WriteLine($"{person.LastName}\t {person.FirstName}\t\t {person.Age}");
-            }
+            //foreach (Person person in Persons)
+            //{
+            //    Console.WriteLine($"{person.LastName}\t {person.FirstName}\t\t {person.Age}");
+            //}
+
+
+            Console.WriteLine($"{sortParameter[orderBy]}");
+            Console.WriteLine($"{sortParameter[thenBy]}");
             Console.WriteLine();
 
             //List<Person> sortedPersons = CustomSort(Persons,sortParameter);
