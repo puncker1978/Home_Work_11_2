@@ -7,6 +7,7 @@ namespace ReflectionSort
     {
         static void Main(string[] args)
         {
+            #region этот код работает
             string sortBy = "LastName";
             string thenBy = "FirstName";
             List<Person> sortedPeople = SortList(Persons, sortBy, thenBy);
@@ -29,6 +30,8 @@ namespace ReflectionSort
                     return list;
                 }
             }
+            #endregion
+
             Console.ReadKey();
         }
     }
