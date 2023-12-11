@@ -9,8 +9,8 @@
         x:Name="loginwindow">
     <StackPanel>
         <ComboBox Height="30" Width="250" Margin="10 20"
-                  ItemsSource="{Binding Positions}"
-                  SelectedItem="{Binding Position}">
+                  ItemsSource="{Binding Positions, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Position, UpdateSourceTrigger=PropertyChanged}">
         </ComboBox>
         <Button Height="30" Width="100" Content="ОК"
                 Command="{Binding ShowMainWindowCommand, UpdateSourceTrigger=PropertyChanged}"/>

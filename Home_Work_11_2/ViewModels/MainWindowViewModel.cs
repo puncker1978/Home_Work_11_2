@@ -1,4 +1,8 @@
-﻿using Home_Work_11_2.Infra;
+﻿// This is a personal academic project. Dear PVS-Studio, please check it.
+
+// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: https://pvs-studio.com
+
+using Home_Work_11_2.Infra;
 using Home_Work_11_2.Models.Clients;
 using Home_Work_11_2.Models.Data;
 using Home_Work_11_2.Views;
@@ -6,20 +10,35 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using System.Linq.Dynamic.Core;
-using System.Runtime.CompilerServices;
 
 namespace Home_Work_11_2.ViewModels
 {
     internal class MainWindowViewModel : PropertyChangedBase
     {
         #region Константы
-        private readonly string[] colNames = { "Фамилия", "Имя", "Отчество", "Дата рождения", "Сумма на счёте", "Телефон" };
-        private readonly string[] sortDirection = { "По возрастанию", "По убыванию" };
+        private static readonly string[] colNames = { "Фамилия", "Имя", "Отчество", "Дата рождения", "Сумма на счёте", "Телефон" };
+        private static readonly string[] sortDirection = { "По возрастанию", "По убыванию" };
+
+        private readonly Dictionary<string, string> sortParameterDictionary = new Dictionary<string, string>()
+        {
+            [ColNames[0]] = "SecondName",
+            [ColNames[1]] = "FirstName",
+            [ColNames[2]] = "ThirdName",
+            [ColNames[3]] = "BirthDate",
+            [ColNames[4]] = "Sum",
+            [ColNames[5]] = "PhoneNumber"
+        };
+        private readonly Dictionary<string, string> sortDirectionDictionary = new Dictionary<string, string>()
+        {
+            [SortDirection[0]] = "asc",
+            [SortDirection[1]] = "desc"
+        };
+
         #endregion Константы
 
         #region Поля
-        public string[] ColNames => colNames;
-        public string[] SortDirection => sortDirection;
+        public static string[] ColNames => colNames;
+        public static string[] SortDirection => sortDirection;
 
         private string _searchText;
         private IEnumerable<Client> _filteredClients;
@@ -128,12 +147,12 @@ namespace Home_Work_11_2.ViewModels
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
             SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
             ShowSortClientWindowCommand = new RelayCommand(ShowSortClientWindow, CanShowSortClientWindow);
-            SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
 
         public MainWindowViewModel()
         {
-
+            Clients = Repository.GetClients();
+            SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
         #endregion Конструкторы
 
@@ -147,14 +166,64 @@ namespace Home_Work_11_2.ViewModels
             else
             {
                 FilteredClients = new ObservableCollection<Client>(
-                    FilteredClients.Where(
+                    Clients.Where(
                         client => client.FirstName.Contains(
                             SearchText, StringComparison.OrdinalIgnoreCase)));
+            }
+        }
+        private void UpdateSortedClients()
+        {
+            if (string.IsNullOrEmpty(FirstSortParameter) || string.IsNullOrEmpty(FirstSortDirection))
+            {
+                FilteredClients = new ObservableCollection<Client>(Clients);
+            }
+            else
+            {
+                //Тестовая сортировка по фамилии по убыванию(не зависит от ComboBox'ов)
+                FilteredClients = new ObservableCollection<Client>(
+                    Clients.AsQueryable().OrderBy("SecondName desc").ToList());
             }
         }
         #endregion Методы
 
         #region Команды
+
+        #region Команда сортировки
+        //Команда сортировки клиентов
+        public ICommand SortClientCommand { get; set; }
+        private bool CanSortClient(object obj)
+        {
+            return (!string.IsNullOrEmpty(FirstSortParameter) && !string.IsNullOrEmpty(FirstSortDirection));
+        }
+        private void SortClient(object obj)
+        {
+            SortClientWindow? sortClientWindow = Application.Current.Windows.OfType<SortClientWindow>().SingleOrDefault(x => x.IsActive);
+
+            UpdateSortedClients();
+            sortClientWindow?.Close();
+        }
+        #endregion Команда сортировки
+        
+        #region Команда открытия окна для сортировки клиентов
+        //Команда открытия окна для редактирования клиента
+        public ICommand ShowSortClientWindowCommand { get; set; }
+        private bool CanShowSortClientWindow(object obj)
+        {
+            return true;
+        }
+        private void ShowSortClientWindow(object obj)
+        {
+            var mainWindow = obj as Window;
+
+            SortClientWindow sortClientWindow = new(FilteredClients)
+            {
+                Owner = mainWindow,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
+            sortClientWindow.ShowDialog();
+        }
+        #endregion
+
         #region Команда открытия окна для добавления нового клиента
         //Команда открытия окна для добавления нового клиента
         public ICommand ShowAddNewClientWindowCommand { get; set; }
@@ -192,41 +261,7 @@ namespace Home_Work_11_2.ViewModels
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
             editClientWindow.ShowDialog();
-            
-        }
-        #endregion
 
-        #region Команда открытия окна для сортировки клиентов
-        //Команда открытия окна для редактирования клиента
-        public ICommand ShowSortClientWindowCommand { get; set; }
-        private bool CanShowSortClientWindow(object obj)
-        {
-            return true;
-        }
-        private void ShowSortClientWindow(object obj)
-        {
-            var mainWindow = obj as Window;
-
-            SortClientWindow sortClientWindow = new()
-            {
-                Owner = mainWindow,
-                WindowStartupLocation = WindowStartupLocation.CenterScreen
-            };
-            sortClientWindow.ShowDialog();
-
-        }
-        #endregion
-
-        #region Команда для удаления клиента
-        //Команда для удаления клиента
-        public ICommand DeleteClientCommand { get; set; }
-        private bool CanDeleteClient(object obj)
-        {
-            return SelectedClient != null;
-        }
-        private void DeleteClient(object obj)
-        {
-            Repository.RemoveClient(SelectedClient);
         }
         #endregion
 
@@ -243,24 +278,19 @@ namespace Home_Work_11_2.ViewModels
         }
         #endregion
 
-        #region Команда сортировки
-        //Команда для сортировки клиентов
-        public ICommand SortClientCommand { get; set; }
-        private bool CanSortClient(object obj)
+        #region Команда для удаления клиента
+        //Команда для удаления клиента
+        public ICommand DeleteClientCommand { get; set; }
+        private bool CanDeleteClient(object obj)
         {
-            return !string.IsNullOrWhiteSpace(FirstSortParameter) && !string.IsNullOrWhiteSpace(FirstSortDirection);
+            return SelectedClient != null;
         }
-
-        private void SortClient(object obj)
+        private void DeleteClient(object obj)
         {
-            FilteredClients = FilteredClients.AsQueryable().OrderBy(FirstArgumentSort).ToList();
-            //Получить ссылку на текущее окно
-            SortClientWindow? sortClientWindow = Application.Current.Windows.OfType<SortClientWindow>().SingleOrDefault(x => x.IsActive);
-
-            // Закрыть текущее окно
-            sortClientWindow?.Close();
+            Repository.RemoveClient(SelectedClient);
         }
         #endregion
+        
         #endregion Команды
     }
 }
