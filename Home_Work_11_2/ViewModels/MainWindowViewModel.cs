@@ -10,12 +10,14 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 using System.Linq.Dynamic.Core;
+using System.Diagnostics;
 
 namespace Home_Work_11_2.ViewModels
 {
     internal class MainWindowViewModel : PropertyChangedBase
     {
         #region Константы
+
         private static readonly string[] colNames = { "Фамилия", "Имя", "Отчество", "Дата рождения", "Сумма на счёте", "Телефон" };
         private static readonly string[] sortDirection = { "По возрастанию", "По убыванию" };
 
@@ -41,7 +43,7 @@ namespace Home_Work_11_2.ViewModels
         public static string[] SortDirection => sortDirection;
 
         private string _searchText;
-        private IEnumerable<Client> _filteredClients;
+        private ObservableCollection<Client> _filteredClients;
 
         private string _firstSortParameter;
         private string _firstSortDirection;
@@ -50,6 +52,7 @@ namespace Home_Work_11_2.ViewModels
         private string _secondSortParameter;
         private string _secondSortDirection;
         private string _secondArgumentSort;
+
         #endregion Поля
 
         #region Свойства
@@ -68,7 +71,7 @@ namespace Home_Work_11_2.ViewModels
         }
         public static string? Position { get; set; }
         public static Client? SelectedClient { get; set; }
-        public IEnumerable<Client> FilteredClients
+        public ObservableCollection<Client> FilteredClients
         {
             get => _filteredClients;
             set
@@ -77,8 +80,7 @@ namespace Home_Work_11_2.ViewModels
                 NotifyPropertyChanged();
             }
         }
-        public IEnumerable<Client> Clients { get; set; }
-
+        public ObservableCollection<Client> Clients { get; set; }
         public string FirstSortParameter
         {
             get => _firstSortParameter;
@@ -106,7 +108,6 @@ namespace Home_Work_11_2.ViewModels
                 NotifyPropertyChanged();
             }
         }
-
         public string SecondSortParameter
         {
             get { return _secondSortParameter; }
@@ -134,6 +135,7 @@ namespace Home_Work_11_2.ViewModels
                 NotifyPropertyChanged();
             }
         }
+
         #endregion Свойства
 
         #region Конструкторы
@@ -147,11 +149,13 @@ namespace Home_Work_11_2.ViewModels
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
             SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
             ShowSortClientWindowCommand = new RelayCommand(ShowSortClientWindow, CanShowSortClientWindow);
+            SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
 
         public MainWindowViewModel()
         {
             Clients = Repository.GetClients();
+            FilteredClients = Repository.GetClients();
             SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
         #endregion Конструкторы
@@ -171,19 +175,15 @@ namespace Home_Work_11_2.ViewModels
                             SearchText, StringComparison.OrdinalIgnoreCase)));
             }
         }
-        private void UpdateSortedClients()
+
+        //Сортировка по фамилии по возрастанию с использованием Dynamic LINQ
+        //(Не зависит от данных combobox'ов в окне сортировки)
+        static private IEnumerable<Client> SortClient(ObservableCollection<Client> clients)
         {
-            if (string.IsNullOrEmpty(FirstSortParameter) || string.IsNullOrEmpty(FirstSortDirection))
-            {
-                FilteredClients = new ObservableCollection<Client>(Clients);
-            }
-            else
-            {
-                //Тестовая сортировка по фамилии по убыванию(не зависит от ComboBox'ов)
-                FilteredClients = new ObservableCollection<Client>(
-                    Clients.AsQueryable().OrderBy("SecondName desc").ToList());
-            }
+            IEnumerable<Client> result = clients.AsQueryable().OrderBy("SecondName asc");
+            return result;
         }
+
         #endregion Методы
 
         #region Команды
@@ -193,14 +193,21 @@ namespace Home_Work_11_2.ViewModels
         public ICommand SortClientCommand { get; set; }
         private bool CanSortClient(object obj)
         {
-            return (!string.IsNullOrEmpty(FirstSortParameter) && !string.IsNullOrEmpty(FirstSortDirection));
+            //return (!string.IsNullOrEmpty(FirstSortParameter) && !string.IsNullOrEmpty(FirstSortDirection));
+            return true;
         }
         private void SortClient(object obj)
         {
             SortClientWindow? sortClientWindow = Application.Current.Windows.OfType<SortClientWindow>().SingleOrDefault(x => x.IsActive);
 
-            UpdateSortedClients();
+            FilteredClients = new ObservableCollection<Client>(SortClient(Clients));
+
             sortClientWindow?.Close();
+
+            foreach (var client in FilteredClients)
+            {
+                Debug.WriteLine($"{client.SecondName}");
+            }
         }
         #endregion Команда сортировки
         
@@ -215,7 +222,7 @@ namespace Home_Work_11_2.ViewModels
         {
             var mainWindow = obj as Window;
 
-            SortClientWindow sortClientWindow = new(FilteredClients)
+            SortClientWindow sortClientWindow = new()
             {
                 Owner = mainWindow,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen

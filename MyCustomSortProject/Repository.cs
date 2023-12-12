@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,9 @@ namespace MyCustomSortProject
 {
     internal static class Repository
     {
-        public static List<Person> Persons =
-           [
-           new Person("Иван", "Николаев", 26),
+        public static ObservableCollection<Person> Persons =
+        [
+            new Person("Иван", "Николаев", 26),
             new Person("Иван", "Степанов", 21),
             new Person("Анна", "Николаева", 24),
             new Person("Анна", "Владимирова", 28),
@@ -20,6 +21,6 @@ namespace MyCustomSortProject
             new Person("Данна", "Владимирова", 21),
             new Person("Лариса", "Николаева", 24),
             new Person("Игнат", "Степанов", 26)
-            ];
+        ];
     }
 }

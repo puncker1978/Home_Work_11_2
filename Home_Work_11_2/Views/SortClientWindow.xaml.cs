@@ -13,7 +13,7 @@ namespace Home_Work_11_2.Views
     /// </summary>
     public partial class SortClientWindow : Window
     {
-        public SortClientWindow(IEnumerable<Client> filteredClients)
+        public SortClientWindow()
         {
             InitializeComponent();
             this.DataContext = new MainWindowViewModel();

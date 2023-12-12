@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using static MyCustomSortProject.Repository;
+using System.Linq.Dynamic.Core;
+using System.Collections.ObjectModel;
 
 namespace MyCustomSortProject
 {
@@ -10,49 +12,26 @@ namespace MyCustomSortProject
             string orderBy = "LastName";
             string thenBy = "FirstName";
 
-            Dictionary<string, int> sortParameter = new Dictionary<string, int>()
+            static void ShowCollection(IEnumerable<Person> collection)
             {
-                [orderBy] = 1,
-                [thenBy] = 1
-            };
+                foreach (var item in collection)
+                {
+                    Console.WriteLine($"{item.LastName}\t {item.FirstName}\t\t {item.Age}");
+                }
+                Console.WriteLine();
+            }
 
-            //foreach (Person person in Persons)
-            //{
-            //    Console.WriteLine($"{person.LastName}\t {person.FirstName}\t\t {person.Age}");
-            //}
+            ShowCollection(Persons);
 
+            static IEnumerable<Person> SortCollection(IEnumerable<Person> collection)
+            {
+                return collection.AsQueryable().OrderBy("LastName asc").ToList();
+            }
 
-            Console.WriteLine($"{sortParameter[orderBy]}");
-            Console.WriteLine($"{sortParameter[thenBy]}");
-            Console.WriteLine();
-
-            //List<Person> sortedPersons = CustomSort(Persons,sortParameter);
-
-            //static List<Person> CustomSort(List<Person> list, Dictionary<string, int> _sortParameter)
-            //{
-            //    PropertyInfo? property1 = typeof(Person).GetProperty(sortBy);
-            //    PropertyInfo? property2 = typeof(Person).GetProperty(thenBy);
-            //    if (property1 != null && property2 != null)
-            //    {
-            //        return [.. list.OrderBy(x => property1.GetValue(x, null)).ThenBy(x => property2.GetValue(x, null))];
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"Свойство {sortBy}  или {thenBy} не найдено");
-            //        return list;
-            //    }
-            //}
-
-
-
-
-
+            IEnumerable<Person> sortedPersons = SortCollection(Persons);
+            ShowCollection(sortedPersons);
 
             Console.WriteLine();
-
-                
-
-
             Console.ReadKey();
         }
     }

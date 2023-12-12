@@ -16,7 +16,7 @@
                      HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0"/>
             
             <Button x:Name="SortButton" Content="Сортировка"  Width="130" VerticalAlignment="Top" Margin="100 25"
-                    Command="{Binding ShowSortClientWindowCommand}"/>
+                    Command="{Binding ShowSortClientWindowCommand, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         
             <Button CommandParameter="{x:Reference Name=mainwindow}"
