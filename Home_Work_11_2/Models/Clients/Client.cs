@@ -41,9 +41,10 @@ namespace Home_Work_11_2.Models.Clients
         /// Номер телефона клиента
         /// </summary>
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
-        
+
         #endregion
 
+        #region Конструкторы
         /// <summary>
         /// Конструктор, описывающий клиента
         /// </summary>
@@ -69,5 +70,6 @@ namespace Home_Work_11_2.Models.Clients
             Address = address;
             BankAccount = bankAccount;
         }
+        #endregion Конструкторы
     }
 }

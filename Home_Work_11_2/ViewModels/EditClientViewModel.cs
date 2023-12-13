@@ -157,14 +157,18 @@ namespace Home_Work_11_2.ViewModels
             get => sum;
             set
             {
-                sum = value;
-                NotifyPropertyChanged();
+                if (sum != value)
+                {
+                    sum = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         #endregion
 
         #endregion Свойства
 
+        #region Конструкторы
         public EditClientViewModel(Client client) 
         {
             Client = client;
@@ -182,7 +186,9 @@ namespace Home_Work_11_2.ViewModels
             Sum = client.BankAccount.Sum;
             EditClientCommand = new RelayCommand(EditClient, CanEditClient);
         }
+        #endregion Конструкторы
 
+        #region Команды
         public ICommand EditClientCommand { get; set; }
         private bool CanEditClient(object obj)
         {
@@ -205,5 +211,6 @@ namespace Home_Work_11_2.ViewModels
             // Закрыть текущее окно
             window?.Close();
         }
+        #endregion Команды
     }
 }

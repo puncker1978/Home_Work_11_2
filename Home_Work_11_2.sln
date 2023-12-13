@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home_Work_11_2", "Home_Work
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionSort", "ReflectionSort\ReflectionSort.csproj", "{A77D7701-4F7C-4DA5-A775-F89ED81EC5F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCustomSortProject", "MyCustomSortProject\MyCustomSortProject.csproj", "{AD249CA7-9B36-46D3-B246-A8C45504362A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCustomSortProject", "MyCustomSortProject\MyCustomSortProject.csproj", "{AD249CA7-9B36-46D3-B246-A8C45504362A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMCustomSort", "MVVMCustomSort\MVVMCustomSort.csproj", "{B65FBFA5-9FE9-4671-B1DA-43BD14444169}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{AD249CA7-9B36-46D3-B246-A8C45504362A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD249CA7-9B36-46D3-B246-A8C45504362A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD249CA7-9B36-46D3-B246-A8C45504362A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B65FBFA5-9FE9-4671-B1DA-43BD14444169}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B65FBFA5-9FE9-4671-B1DA-43BD14444169}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B65FBFA5-9FE9-4671-B1DA-43BD14444169}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B65FBFA5-9FE9-4671-B1DA-43BD14444169}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
