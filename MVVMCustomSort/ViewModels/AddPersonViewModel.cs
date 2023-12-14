@@ -22,7 +22,7 @@ namespace MVVMCustomSort.ViewModels
             get => name;
             set
             {
-                if (value != null)
+                if (value != name)
                 {
                     name = value;
                     OnPropertyChanged();
@@ -34,7 +34,7 @@ namespace MVVMCustomSort.ViewModels
             get => age;
             set
             {
-                if (value != null)
+                if (value != age)
                 {
                     age = value;
                     OnPropertyChanged();
@@ -58,14 +58,12 @@ namespace MVVMCustomSort.ViewModels
         private bool CanAddPerson(object obj) => Name != "" && 0 < Age && Age < 120;
         private void AddPerson(object obj)
         {
+            PersonDB.AddNewPerson(new Person(Name, Age));
+            
             //Получить ссылку на текущее окно
             AddPersonWindow? window = Application.Current.Windows.OfType<AddPersonWindow>().SingleOrDefault(x => x.IsActive);
 
             // Закрыть текущее окно
-            window?.Close();
-            PersonDB.AddNewPerson(new Person(Name, Age));
-            Name = "";
-            Age = null;
             window?.Close();
         }
         #endregion Команда добавления персоны

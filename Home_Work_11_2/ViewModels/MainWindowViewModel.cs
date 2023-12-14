@@ -178,7 +178,7 @@ namespace Home_Work_11_2.ViewModels
 
         //Сортировка по фамилии по возрастанию с использованием Dynamic LINQ
         //(Не зависит от данных combobox'ов в окне сортировки)
-        static private IEnumerable<Client> SortClient(ObservableCollection<Client> clients)
+        static private IEnumerable<Client> SortClientMethod(ObservableCollection<Client> clients)
         {
             IEnumerable<Client> result = clients.AsQueryable().OrderBy("SecondName asc");
             return result;
@@ -200,7 +200,7 @@ namespace Home_Work_11_2.ViewModels
         {
             SortClientWindow? sortClientWindow = Application.Current.Windows.OfType<SortClientWindow>().SingleOrDefault(x => x.IsActive);
 
-            FilteredClients = new ObservableCollection<Client>(SortClient(Clients));
+            FilteredClients = new ObservableCollection<Client>(SortClientMethod(Clients));
 
             sortClientWindow?.Close();
 
