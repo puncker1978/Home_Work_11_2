@@ -27,9 +27,9 @@ namespace MVVMCustomSort.ViewModels
             }
         }
 
-        static private IEnumerable<Person> SortClient(ObservableCollection<Person> persons)
+        static private IEnumerable<Person> SortClientMethod(ObservableCollection<Person> persons)
         {
-            IEnumerable<Person> result = persons.AsQueryable().OrderBy("Age desc");
+            IEnumerable<Person> result = persons.AsQueryable().OrderBy("Name asc");
             return result;
         }
 
@@ -42,6 +42,8 @@ namespace MVVMCustomSort.ViewModels
 
 
         #region Команды
+
+        #region Команда открытия окна для добавления новой персоны
         public ICommand ShowWindowCommand { get; set; }
         private bool CanShowWindow(object obj) => true;
         private void ShowWindow(object obj)
@@ -52,14 +54,18 @@ namespace MVVMCustomSort.ViewModels
             addPersonWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             addPersonWindow.ShowDialog();
         }
+        #endregion
 
+        #region Команда сортировки персон
         public ICommand SortPersonCommand { get; set; }
         private bool CanSortPerson(object obj) => true;
         private void SortPerson(object obj)
         {
-            Persons = new ObservableCollection<Person>(SortClient(Persons));
+            Persons = new ObservableCollection<Person>(SortClientMethod(Persons));
         }
-        #endregion
+        #endregion Команда сортировки персон
+
+        #endregion Команды
 
         #region Реализация интерфейса INotifyPropertyChanged
         /// <summary>Событие для извещения об изменения свойства</summary>

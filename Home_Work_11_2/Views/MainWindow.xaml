@@ -3,11 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Home_Work_11_2.Views"
+        xmlns:local="clr-namespace:Home_Work_11_2.ViewModels"
         mc:Ignorable="d"
         Title="{Binding Position}" Height="650" Width="1000"
         x:Name="mainwindow" WindowStartupLocation="CenterScreen">
-
+    
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid Background="#F5F5F5">
         <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
             <StackPanel Orientation="Horizontal">

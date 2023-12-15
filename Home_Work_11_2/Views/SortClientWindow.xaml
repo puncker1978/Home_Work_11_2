@@ -3,9 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Home_Work_11_2.Views"
+        xmlns:local="clr-namespace:Home_Work_11_2.ViewModels"
         mc:Ignorable="d"
         Title="Сортировка" Height="250" Width="600">
+    
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*"/>
@@ -55,6 +60,6 @@
 
         <Button Grid.ColumnSpan="3" Grid.Row="3" Content="Ok"
                 Height="30" Width="100"
-                Command="{Binding SortClientCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                Command="{Binding SortClientCommand,  UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </Window>

@@ -2,12 +2,14 @@
 using Home_Work_11_2.Models.Clients;
 using Home_Work_11_2.Models.Data;
 using Home_Work_11_2.Views;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Home_Work_11_2.ViewModels
 {
-    internal class EditClientViewModel : PropertyChangedBase
+    internal class EditClientViewModel : INotifyPropertyChanged
     {
         #region Поля
 
@@ -47,8 +49,11 @@ namespace Home_Work_11_2.ViewModels
             get => firstName;
             set
             {
-                firstName = value;
-                NotifyPropertyChanged();
+                if (firstName != value)
+                {
+                    firstName = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string SecondName
@@ -56,8 +61,11 @@ namespace Home_Work_11_2.ViewModels
             get => secondName;
             set
             {
-                secondName = value;
-                NotifyPropertyChanged();
+                if (secondName != value)
+                {
+                    secondName = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string ThirdName
@@ -65,8 +73,11 @@ namespace Home_Work_11_2.ViewModels
             get => thirdName;
             set
             {
-                thirdName = value;
-                NotifyPropertyChanged();
+                if (thirdName != value)
+                {
+                    thirdName = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string PhoneNumber
@@ -74,8 +85,11 @@ namespace Home_Work_11_2.ViewModels
             get => phoneNumber;
             set
             {
-                phoneNumber = value;
-                NotifyPropertyChanged();
+                if (phoneNumber != value)
+                {
+                    phoneNumber = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         #endregion
@@ -86,8 +100,11 @@ namespace Home_Work_11_2.ViewModels
             get => passportSeries;
             set
             {
-                passportSeries = value;
-                NotifyPropertyChanged();
+                if (passportSeries != value)
+                {
+                    passportSeries = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string PassportNumber
@@ -95,8 +112,11 @@ namespace Home_Work_11_2.ViewModels
             get => passportNumber;
             set
             {
-                passportNumber = value;
-                NotifyPropertyChanged();
+                if (passportNumber != value)
+                {
+                    passportNumber = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public DateOnly BirthDate
@@ -127,8 +147,11 @@ namespace Home_Work_11_2.ViewModels
             get => street;
             set
             {
-                street = value;
-                NotifyPropertyChanged();
+                if (street != value)
+                {
+                    street = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string HouseNumber
@@ -136,8 +159,11 @@ namespace Home_Work_11_2.ViewModels
             get => houseNumber;
             set
             {
-                houseNumber = value;
-                NotifyPropertyChanged();
+                if (houseNumber != value)
+                {
+                    houseNumber = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string FlatNumber
@@ -145,8 +171,11 @@ namespace Home_Work_11_2.ViewModels
             get => flatNumber;
             set
             {
-                flatNumber = value;
-                NotifyPropertyChanged();
+                if (flatNumber != value)
+                {
+                    flatNumber = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         #endregion
@@ -212,5 +241,14 @@ namespace Home_Work_11_2.ViewModels
             window?.Close();
         }
         #endregion Команды
+
+        #region Реализация интерфейса INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion Реализация интерфейса INotifyPropertyChanged
     }
 }

@@ -3,10 +3,12 @@ using Home_Work_11_2.Models.Employees;
 using Home_Work_11_2.Views;
 using System.Windows.Input;
 using System.Windows;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Home_Work_11_2.ViewModels
 {
-    internal class LoginWindowViewModel : PropertyChangedBase
+    internal class LoginWindowViewModel : INotifyPropertyChanged
     {
         private readonly string[] positions = { "Консультант", "Менеджер" };
         public string[] Positions => positions;
@@ -29,8 +31,11 @@ namespace Home_Work_11_2.ViewModels
             get => position;
             set
             {
-                position = value;
-                NotifyPropertyChanged();
+                if ( value != position )
+                {
+                    position = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -59,5 +64,14 @@ namespace Home_Work_11_2.ViewModels
         {
             ShowMainWindowCommand = new RelayCommand(ShowMainWindow, CanShowMainWindow);
         }
+
+        #region Реализация интерфейса INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion Реализация интерфейса INotifyPropertyChanged
     }
 }

@@ -11,10 +11,12 @@ using System.Windows;
 using System.Windows.Input;
 using System.Linq.Dynamic.Core;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace Home_Work_11_2.ViewModels
 {
-    internal class MainWindowViewModel : PropertyChangedBase
+    internal class MainWindowViewModel : INotifyPropertyChanged
     {
         #region Константы
 
@@ -44,6 +46,7 @@ namespace Home_Work_11_2.ViewModels
 
         private string _searchText;
         private ObservableCollection<Client> _filteredClients;
+        private ObservableCollection<Client> _clients;
 
         private string _firstSortParameter;
         private string _firstSortDirection;
@@ -76,11 +79,25 @@ namespace Home_Work_11_2.ViewModels
             get => _filteredClients;
             set
             {
-                _filteredClients = value;
-                NotifyPropertyChanged();
+                if (value != _filteredClients)
+                {
+                    _filteredClients = value;
+                    NotifyPropertyChanged(nameof(FilteredClients));
+                }
             }
         }
-        public ObservableCollection<Client> Clients { get; set; }
+        public ObservableCollection<Client> Clients
+        {
+            get => _clients;
+            set
+            {
+                if (_clients != value)
+                {
+                    _clients = value;
+                    NotifyPropertyChanged(nameof(Clients));
+                }
+            }
+        }
         public string FirstSortParameter
         {
             get => _firstSortParameter;
@@ -149,12 +166,11 @@ namespace Home_Work_11_2.ViewModels
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
             SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
             ShowSortClientWindowCommand = new RelayCommand(ShowSortClientWindow, CanShowSortClientWindow);
-            SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
 
         public MainWindowViewModel()
         {
-            Clients = Repository.GetClients();
+            //Clients = Repository.GetClients();
             FilteredClients = Repository.GetClients();
             SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
@@ -200,7 +216,7 @@ namespace Home_Work_11_2.ViewModels
         {
             SortClientWindow? sortClientWindow = Application.Current.Windows.OfType<SortClientWindow>().SingleOrDefault(x => x.IsActive);
 
-            FilteredClients = new ObservableCollection<Client>(SortClientMethod(Clients));
+            FilteredClients = new ObservableCollection<Client>(SortClientMethod(FilteredClients));
 
             sortClientWindow?.Close();
 
@@ -297,7 +313,16 @@ namespace Home_Work_11_2.ViewModels
             Repository.RemoveClient(SelectedClient);
         }
         #endregion
-        
+
         #endregion Команды
+
+        #region Реализация интерфейса INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion Реализация интерфейса INotifyPropertyChanged
     }
 }
