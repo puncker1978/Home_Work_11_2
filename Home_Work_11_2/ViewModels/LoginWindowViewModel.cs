@@ -48,8 +48,10 @@ namespace Home_Work_11_2.ViewModels
 
         private void ShowMainWindow(object obj)
         {
-            MainWindow mainWindow = new(Position);
-            mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            MainWindow mainWindow = new(Position)
+            {
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
+            };
 
             //Получить ссылку на текущее окно
             LoginWindow? loginWindow = Application.Current.Windows.OfType<LoginWindow>().SingleOrDefault(x => x.IsActive);
@@ -66,7 +68,7 @@ namespace Home_Work_11_2.ViewModels
         }
 
         #region Реализация интерфейса INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = "")
         {
