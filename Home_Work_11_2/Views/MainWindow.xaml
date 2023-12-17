@@ -19,8 +19,12 @@
                      Height="30" Width="200" Margin="25" VerticalAlignment="Top"
                      HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0"/>
             
-            <Button x:Name="SortButton" Content="Сортировка"  Width="130" VerticalAlignment="Top" Margin="100 25"
+            <Button x:Name="SortButton" Content="Сортировка"  Width="130" VerticalAlignment="Top" 
+                    Margin="100 25"
                     Command="{Binding ShowSortClientWindowCommand, UpdateSourceTrigger=PropertyChanged}"/>
+            <Button x:Name="SortButton1" Content="Сорт здесь"  Width="130" VerticalAlignment="Top"
+                    Margin="0 25 10 0"
+                    Command="{Binding SortClientCommand, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
         
             <Button CommandParameter="{x:Reference Name=mainwindow}"

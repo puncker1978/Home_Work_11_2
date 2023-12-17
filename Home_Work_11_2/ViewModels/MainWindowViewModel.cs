@@ -44,29 +44,29 @@ namespace Home_Work_11_2.ViewModels
         public static string[] ColNames => colNames;
         public static string[] SortDirection => sortDirection;
 
-        private string _searchText;
-        private ObservableCollection<Client> _filteredClients;
-        private ObservableCollection<Client> _clients;
+        private string searchText;
+        private ObservableCollection<Client> filteredClients;
+        private ObservableCollection<Client> clients;
 
-        private string _firstSortParameter;
-        private string _firstSortDirection;
-        private string _firstArgumentSort;
+        private string firstSortParameter;
+        private string firstSortDirection;
+        private string firstArgumentSort;
 
-        private string _secondSortParameter;
-        private string _secondSortDirection;
-        private string _secondArgumentSort;
+        private string secondSortParameter;
+        private string secondSortDirection;
+        private string secondArgumentSort;
 
         #endregion Поля
 
         #region Свойства
         public string SearchText
         {
-            get => _searchText;
+            get => searchText;
             set
             {
-                if (_searchText != value)
+                if (searchText != value)
                 {
-                    _searchText = value;
+                    searchText = value;
                     NotifyPropertyChanged(nameof(SearchText));
                     UpdateFilteredClients();
                 }
@@ -76,80 +76,98 @@ namespace Home_Work_11_2.ViewModels
         public static Client? SelectedClient { get; set; }
         public ObservableCollection<Client> FilteredClients
         {
-            get => _filteredClients;
+            get => filteredClients;
             set
             {
-                if (value != _filteredClients)
+                if (value != filteredClients)
                 {
-                    _filteredClients = value;
+                    filteredClients = value;
                     NotifyPropertyChanged(nameof(FilteredClients));
                 }
             }
         }
         public ObservableCollection<Client> Clients
         {
-            get => _clients;
+            get => clients;
             set
             {
-                if (_clients != value)
+                if (clients != value)
                 {
-                    _clients = value;
+                    clients = value;
                     NotifyPropertyChanged(nameof(Clients));
                 }
             }
         }
         public string FirstSortParameter
         {
-            get => _firstSortParameter;
+            get => firstSortParameter;
             set
             {
-                _firstSortParameter = value;
-                NotifyPropertyChanged();
+                if (firstSortParameter != value)
+                {
+                    firstSortParameter = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string FirstSortDirection
         {
-            get => _firstSortDirection;
+            get => firstSortDirection;
             set
             {
-                _firstSortDirection = value;
-                NotifyPropertyChanged();
+                if (firstSortDirection != value)
+                {
+                    firstSortDirection = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string FirstArgumentSort
         {
-            get => _firstArgumentSort;
+            get => firstArgumentSort;
             set
             {
-                _firstArgumentSort = FirstSortParameter + " " + FirstSortDirection;
-                NotifyPropertyChanged();
+                if (firstArgumentSort != value)
+                {
+                    firstArgumentSort = FirstSortParameter + " " + FirstSortDirection;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string SecondSortParameter
         {
-            get { return _secondSortParameter; }
+            get { return secondSortParameter; }
             set
             {
-                _secondSortParameter = value;
-                NotifyPropertyChanged();
+                if (secondSortParameter != value)
+                {
+                    secondSortParameter = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string SecondSortDirection
         {
-            get => _secondSortDirection;
+            get => secondSortDirection;
             set
             {
-                _secondSortDirection = value;
-                NotifyPropertyChanged();
+                if (secondSortDirection != value)
+                {
+                    secondSortDirection = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
         public string SecondArgumentSort
         {
-            get => _secondArgumentSort;
+            get => secondArgumentSort;
             set
             {
-                _secondArgumentSort = SecondSortParameter + " " + SecondSortDirection;
-                NotifyPropertyChanged();
+                if (secondArgumentSort != value)
+                {
+                    secondArgumentSort = SecondSortParameter + " " + SecondSortDirection;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -166,11 +184,12 @@ namespace Home_Work_11_2.ViewModels
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
             SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
             ShowSortClientWindowCommand = new RelayCommand(ShowSortClientWindow, CanShowSortClientWindow);
+            SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
 
         public MainWindowViewModel()
         {
-            //Clients = Repository.GetClients();
+            Clients = Repository.GetClients();
             FilteredClients = Repository.GetClients();
             SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }

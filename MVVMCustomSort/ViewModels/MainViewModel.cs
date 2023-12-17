@@ -38,8 +38,8 @@ namespace MVVMCustomSort.ViewModels
             Persons = PersonDB.GetPersons();
             ShowWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
             SortPersonCommand = new RelayCommand(SortPerson, CanSortPerson);
+            ShowSortWindowCommand = new RelayCommand(ShowSortWindow, CanShowSortWindow);
         }
-
 
         #region Команды
 
@@ -56,12 +56,33 @@ namespace MVVMCustomSort.ViewModels
         }
         #endregion
 
+        #region Команда открытия окна для сортировки персон
+        public ICommand ShowSortWindowCommand { get; set; }
+        private bool CanShowSortWindow(object obj) => true;
+        private void ShowSortWindow(object obj)
+        {
+            var mainWindow = obj as MainWindow;
+            SortWindow sortWindow = new SortWindow();
+            sortWindow.Owner = mainWindow;
+            sortWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            sortWindow.ShowDialog();
+        }
+        #endregion
+
         #region Команда сортировки персон
         public ICommand SortPersonCommand { get; set; }
         private bool CanSortPerson(object obj) => true;
         private void SortPerson(object obj)
         {
+            
+            //Получить ссылку на текущее окно
+            SortWindow? sortWindow = Application.Current.Windows.OfType<SortWindow>().SingleOrDefault(x => x.IsActive);
+
             Persons = new ObservableCollection<Person>(SortClientMethod(Persons));
+            
+            // Закрыть текущее окно
+            sortWindow?.Close();
+
         }
         #endregion Команда сортировки персон
 

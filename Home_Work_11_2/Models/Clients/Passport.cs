@@ -7,12 +7,12 @@
         public string PassportNumber { get; set; }
         public DateOnly BirthDate { get; set; }
 
-        public Passport(int passportSeries, string passportNumber, DateOnly birthDate)
+        public Passport(int _passportSeries, string _passportNumber, DateOnly _birthDate)
         {
             Id = Guid.NewGuid();
-            PassportSeries = passportSeries;
-            PassportNumber = passportNumber;
-            BirthDate = birthDate;
+            PassportSeries = _passportSeries;
+            PassportNumber = _passportNumber;
+            BirthDate = _birthDate;
         }
     }
 }

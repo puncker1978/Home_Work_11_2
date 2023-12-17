@@ -35,12 +35,32 @@ namespace Home_Work_11_2.Models.Clients
         /// <summary>
         /// Уникальный идентификационный номер клиента
         /// </summary>
-        public Guid Id { get => id; set => id = value; }
+        public Guid Id
+        {
+            get => id;
+            set
+            {
+                if (id != value)
+                {
+                    id = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Номер телефона клиента
         /// </summary>
-        public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
+        public string PhoneNumber
+        {
+            get => phoneNumber;
+            set
+            {
+                if (phoneNumber != value)
+                {
+                    phoneNumber = value;
+                }
+            }
+        }
 
         #endregion
 
