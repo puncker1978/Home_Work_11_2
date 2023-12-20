@@ -23,7 +23,7 @@ namespace Home_Work_11_2.ViewModels
         private static readonly string[] colNames = { "Фамилия", "Имя", "Отчество", "Дата рождения", "Сумма на счёте", "Телефон" };
         private static readonly string[] sortDirection = { "По возрастанию", "По убыванию" };
 
-        private readonly Dictionary<string, string> sortParameterDictionary = new Dictionary<string, string>()
+        private readonly Dictionary<string, string>? sortParameterDictionary = new Dictionary<string, string>()
         {
             [ColNames[0]] = "SecondName",
             [ColNames[1]] = "FirstName",
@@ -32,7 +32,7 @@ namespace Home_Work_11_2.ViewModels
             [ColNames[4]] = "Sum",
             [ColNames[5]] = "PhoneNumber"
         };
-        private readonly Dictionary<string, string> sortDirectionDictionary = new Dictionary<string, string>()
+        private readonly Dictionary<string, string>? sortDirectionDictionary = new Dictionary<string, string>()
         {
             [SortDirection[0]] = "asc",
             [SortDirection[1]] = "desc"
@@ -44,9 +44,9 @@ namespace Home_Work_11_2.ViewModels
         public static string[] ColNames => colNames;
         public static string[] SortDirection => sortDirection;
 
-        private string searchText;
-        private ObservableCollection<Client> filteredClients;
-        private ObservableCollection<Client> clients;
+        private string? searchText;
+        private ObservableCollection<Client>? filteredClients;
+        private ObservableCollection<Client>? clients;
 
         private string firstSortParameter;
         private string firstSortDirection;
@@ -189,7 +189,7 @@ namespace Home_Work_11_2.ViewModels
 
         public MainWindowViewModel()
         {
-            Clients = Repository.GetClients();
+            //Clients = Repository.GetClients();
             FilteredClients = Repository.GetClients();
             SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
@@ -213,10 +213,11 @@ namespace Home_Work_11_2.ViewModels
 
         //Сортировка по фамилии по возрастанию с использованием Dynamic LINQ
         //(Не зависит от данных combobox'ов в окне сортировки)
-        static private IEnumerable<Client> SortClientMethod(ObservableCollection<Client> clients)
+        static private IEnumerable<Client> SortClientMethod(ObservableCollection<Client> _clients)
         {
-            IEnumerable<Client> result = clients.AsQueryable().OrderBy("SecondName asc");
-            return result;
+            //IEnumerable<Client>? result = clients.AsQueryable().OrderBy("SecondName asc");
+            //return result;
+            return _clients.AsQueryable().OrderBy("SecondName asc");
         }
 
         #endregion Методы
@@ -257,7 +258,7 @@ namespace Home_Work_11_2.ViewModels
         {
             var mainWindow = obj as Window;
 
-            SortClientWindow sortClientWindow = new()
+            SortClientWindow? sortClientWindow = new()
             {
                 Owner = mainWindow,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
@@ -277,7 +278,7 @@ namespace Home_Work_11_2.ViewModels
         {
             var mainWindow = obj as Window;
 
-            NewClientWindow newClientWindow = new()
+            NewClientWindow? newClientWindow = new()
             {
                 Owner = mainWindow,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
@@ -297,7 +298,7 @@ namespace Home_Work_11_2.ViewModels
         {
             var mainWindow = obj as Window;
 
-            EditClientWindow editClientWindow = new(SelectedClient)
+            EditClientWindow? editClientWindow = new(SelectedClient)
             {
                 Owner = mainWindow,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen
@@ -336,7 +337,7 @@ namespace Home_Work_11_2.ViewModels
         #endregion Команды
 
         #region Реализация интерфейса INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = "")
         {

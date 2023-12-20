@@ -1,65 +1,104 @@
-﻿<Window x:Class="Home_Work_11_2.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Home_Work_11_2.ViewModels"
-        mc:Ignorable="d"
-        Title="{Binding Position}" Height="650" Width="1000"
-        x:Name="mainwindow" WindowStartupLocation="CenterScreen">
-    
+﻿<Window
+    x:Class="Home_Work_11_2.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Home_Work_11_2.ViewModels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="mainwindow"
+    Title="{Binding Position}"
+    Width="1000"
+    Height="650"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
     <Window.DataContext>
-        <local:MainWindowViewModel/>
+        <local:MainWindowViewModel />
     </Window.DataContext>
-    
+
     <Grid Background="#F5F5F5">
-        <Grid Background="White" Grid.Row="1" Margin="25,40,25,15" >
+        <Grid
+            Grid.Row="1"
+            Margin="25,40,25,15"
+            Background="White">
             <StackPanel Orientation="Horizontal">
-            <TextBox x:Name="SearchTextBox" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                     Height="30" Width="200" Margin="25" VerticalAlignment="Top"
-                     HorizontalAlignment="left" BorderThickness="1" BorderBrush="#E0E0E0"/>
-            
-            <Button x:Name="SortButton" Content="Сортировка"  Width="130" VerticalAlignment="Top" 
-                    Margin="100 25"
-                    Command="{Binding ShowSortClientWindowCommand, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button x:Name="SortButton1" Content="Сорт здесь"  Width="130" VerticalAlignment="Top"
-                    Margin="0 25 10 0"
-                    Command="{Binding SortClientCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox
+                    x:Name="SearchTextBox"
+                    Width="200"
+                    Height="30"
+                    Margin="25"
+                    HorizontalAlignment="left"
+                    VerticalAlignment="Top"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1"
+                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Button
+                    x:Name="SortButton"
+                    Width="130"
+                    Margin="100,25"
+                    VerticalAlignment="Top"
+                    CommandTarget="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding ShowSortClientWindowCommand, UpdateSourceTrigger=PropertyChanged}"
+                    Content="Сортировка" />
+                <Button
+                    x:Name="SortButton1"
+                    Width="130"
+                    Margin="0,25,10,0"
+                    VerticalAlignment="Top"
+                    CommandTarget="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
+                    Command="{Binding SortClientCommand, UpdateSourceTrigger=PropertyChanged}"
+                    Content="Сорт здесь" />
             </StackPanel>
-        
-            <Button CommandParameter="{x:Reference Name=mainwindow}"
-                    Command="{Binding ShowAddNewClientWindowCommand}"
-                    Content="Новый клиент" Width="150" VerticalContentAlignment="Center" Padding="5"
-                    Margin="25" VerticalAlignment="Top" HorizontalAlignment="Right"
-                    BorderThickness="1" BorderBrush="#E0E0E0"  />
-            
-            <ListView x:Name="ClientList" ItemsSource="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
-                      BorderBrush="#cdcdcd"
-                      Margin="25,70,25,25" Padding="0"
-                      SelectedItem="{Binding SelectedClient, UpdateSourceTrigger=PropertyChanged}"
-                      FontSize="20">
+
+            <Button
+                Width="150"
+                Margin="25"
+                Padding="5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                VerticalContentAlignment="Center"
+                BorderBrush="#E0E0E0"
+                BorderThickness="1"
+                Command="{Binding ShowAddNewClientWindowCommand}"
+                CommandParameter="{x:Reference Name=mainwindow}"
+                Content="Новый клиент" />
+
+            <ListView
+                x:Name="ClientList"
+                Margin="25,70,25,25"
+                Padding="0"
+                BorderBrush="#cdcdcd"
+                FontSize="20"
+                ItemsSource="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding SelectedClient, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ContextMenu>
-                    <ContextMenu  >
-                        <MenuItem Header="Редакировать" Command="{Binding ShowEditClientWindowCommand}"
-                                  IsEnabled="{Binding Flag}"/>
-                        <MenuItem Header="Удалить" Command="{Binding DeleteClientCommand}"
-                                  IsEnabled="{Binding Flag}"/>
+                    <ContextMenu>
+                        <MenuItem
+                            Command="{Binding ShowEditClientWindowCommand}"
+                            Header="Редакировать"/>
+                        <MenuItem
+                            Command="{Binding DeleteClientCommand}"
+                            Header="Удалить"/>
                     </ContextMenu>
                 </ListBox.ContextMenu>
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding SecondName}" Header="Фамилия"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="Имя"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding ThirdName}" Header="Отчество"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding SecondName}" Header="Фамилия" />
+                        <GridViewColumn DisplayMemberBinding="{Binding FirstName}" Header="Имя" />
+                        <GridViewColumn DisplayMemberBinding="{Binding ThirdName}" Header="Отчество" />
                         <GridViewColumn Header="Дата рождения">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding Passport.BirthDate, StringFormat='dd.MM.yyyy'}"/>
+                                    <TextBlock Text="{Binding Passport.BirthDate, StringFormat='dd.MM.yyyy'}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding PhoneNumber}" Header="Телефон" Width="160"/>
-                        <GridViewColumn Header="Сумма на счёте" DisplayMemberBinding="{Binding BankAccount.Sum, StringFormat={}{0} руб.}" />
+                        <GridViewColumn
+                            Width="160"
+                            DisplayMemberBinding="{Binding PhoneNumber}"
+                            Header="Телефон" />
+                        <GridViewColumn DisplayMemberBinding="{Binding BankAccount.Sum, StringFormat={}{0} руб.}" Header="Сумма на счёте" />
                     </GridView>
                 </ListView.View>
             </ListView>
