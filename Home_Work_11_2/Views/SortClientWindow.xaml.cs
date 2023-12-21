@@ -16,7 +16,6 @@ namespace Home_Work_11_2.Views
         public SortClientWindow()
         {
             InitializeComponent();
-            this.DataContext = new MainWindowViewModel();
         }
     }
 }

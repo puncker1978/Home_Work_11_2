@@ -215,9 +215,8 @@ namespace Home_Work_11_2.ViewModels
         //(Не зависит от данных combobox'ов в окне сортировки)
         static private IEnumerable<Client> SortClientMethod(ObservableCollection<Client> _clients)
         {
-            //IEnumerable<Client>? result = clients.AsQueryable().OrderBy("SecondName asc");
-            //return result;
-            return _clients.AsQueryable().OrderBy("SecondName asc");
+            IEnumerable<Client>? result = _clients.AsQueryable().OrderBy("SecondName asc");
+            return result;
         }
 
         #endregion Методы
@@ -240,10 +239,10 @@ namespace Home_Work_11_2.ViewModels
 
             sortClientWindow?.Close();
 
-            foreach (var client in FilteredClients)
-            {
-                Debug.WriteLine($"{client.SecondName}");
-            }
+            //foreach (var client in FilteredClients)
+            //{
+            //    Debug.WriteLine($"{client.SecondName}");
+            //}
         }
         #endregion Команда сортировки
         
