@@ -23,7 +23,7 @@ namespace Home_Work_11_2.ViewModels
         private static readonly string[] colNames = { "Фамилия", "Имя", "Отчество", "Дата рождения", "Сумма на счёте", "Телефон" };
         private static readonly string[] sortDirection = { "По возрастанию", "По убыванию" };
 
-        private readonly Dictionary<string, string>? sortParameterDictionary = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string>? sortParameterDictionary = new()
         {
             [ColNames[0]] = "SecondName",
             [ColNames[1]] = "FirstName",
@@ -32,7 +32,7 @@ namespace Home_Work_11_2.ViewModels
             [ColNames[4]] = "Sum",
             [ColNames[5]] = "PhoneNumber"
         };
-        private readonly Dictionary<string, string>? sortDirectionDictionary = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string>? sortDirectionDictionary = new()
         {
             [SortDirection[0]] = "asc",
             [SortDirection[1]] = "desc"
@@ -41,24 +41,28 @@ namespace Home_Work_11_2.ViewModels
         #endregion Константы
 
         #region Поля
-        public static string[] ColNames => colNames;
-        public static string[] SortDirection => sortDirection;
 
         private string? searchText;
         private ObservableCollection<Client>? filteredClients;
         private ObservableCollection<Client>? clients;
 
-        private string firstSortParameter;
-        private string firstSortDirection;
-        private string firstArgumentSort;
+        private static string? firstSortParameter;
+        private static string? firstSortDirection;
+        private static string? firstArgumentSort;
 
-        private string secondSortParameter;
-        private string secondSortDirection;
-        private string secondArgumentSort;
+        private static string? secondSortParameter;
+        private static string? secondSortDirection;
+        private static string? secondArgumentSort;
+
+        private static bool firstCondition;
+        private static bool secondCondition;
+        private static bool resultCondition;
 
         #endregion Поля
 
         #region Свойства
+        public static string[] ColNames => colNames;
+        public static string[] SortDirection => sortDirection;
         public string SearchText
         {
             get => searchText;
@@ -98,7 +102,7 @@ namespace Home_Work_11_2.ViewModels
                 }
             }
         }
-        public string FirstSortParameter
+        public static string? FirstSortParameter
         {
             get => firstSortParameter;
             set
@@ -106,11 +110,10 @@ namespace Home_Work_11_2.ViewModels
                 if (firstSortParameter != value)
                 {
                     firstSortParameter = value;
-                    NotifyPropertyChanged();
                 }
             }
         }
-        public string FirstSortDirection
+        public static string? FirstSortDirection
         {
             get => firstSortDirection;
             set
@@ -118,35 +121,32 @@ namespace Home_Work_11_2.ViewModels
                 if (firstSortDirection != value)
                 {
                     firstSortDirection = value;
-                    NotifyPropertyChanged();
                 }
             }
         }
-        public string FirstArgumentSort
+        public static string? FirstArgumentSort
         {
             get => firstArgumentSort;
             set
             {
                 if (firstArgumentSort != value)
                 {
-                    firstArgumentSort = FirstSortParameter + " " + FirstSortDirection;
-                    NotifyPropertyChanged();
+                    firstArgumentSort = value;
                 }
             }
         }
-        public string SecondSortParameter
+        public static string? SecondSortParameter
         {
-            get { return secondSortParameter; }
+            get => secondSortParameter;
             set
             {
                 if (secondSortParameter != value)
                 {
                     secondSortParameter = value;
-                    NotifyPropertyChanged();
                 }
             }
         }
-        public string SecondSortDirection
+        public static string? SecondSortDirection
         {
             get => secondSortDirection;
             set
@@ -154,19 +154,17 @@ namespace Home_Work_11_2.ViewModels
                 if (secondSortDirection != value)
                 {
                     secondSortDirection = value;
-                    NotifyPropertyChanged();
                 }
             }
         }
-        public string SecondArgumentSort
+        public static string? SecondArgumentSort
         {
             get => secondArgumentSort;
             set
             {
                 if (secondArgumentSort != value)
                 {
-                    secondArgumentSort = SecondSortParameter + " " + SecondSortDirection;
-                    NotifyPropertyChanged();
+                    secondArgumentSort = value;
                 }
             }
         }
@@ -184,12 +182,12 @@ namespace Home_Work_11_2.ViewModels
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
             SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
             ShowSortClientWindowCommand = new RelayCommand(ShowSortClientWindow, CanShowSortClientWindow);
-            SortClientCommand = new RelayCommand(SortClient, CanSortClient);
+            //SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
 
         public MainWindowViewModel()
         {
-            //Clients = Repository.GetClients();
+            Clients = Repository.GetClients();
             FilteredClients = Repository.GetClients();
             SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
@@ -212,10 +210,21 @@ namespace Home_Work_11_2.ViewModels
         }
 
         //Сортировка по фамилии по возрастанию с использованием Dynamic LINQ
-        //(Не зависит от данных combobox'ов в окне сортировки)
         static private IEnumerable<Client> SortClientMethod(ObservableCollection<Client> _clients)
         {
-            IEnumerable<Client>? result = _clients.AsQueryable().OrderBy("SecondName asc");
+            FirstArgumentSort = sortParameterDictionary[FirstSortParameter] + " " + sortDirectionDictionary[FirstSortDirection];
+            
+            IEnumerable<Client>? result;
+            //IEnumerable<Client>? result = _clients.AsQueryable().OrderBy("SecondName asc");
+            if (!string.IsNullOrEmpty(SecondSortParameter) && !string.IsNullOrEmpty(SecondSortDirection))
+            {
+                SecondArgumentSort = sortParameterDictionary[SecondSortParameter] + " " + sortDirectionDictionary[SecondSortDirection];
+                result = _clients.AsQueryable().OrderBy(FirstArgumentSort).ThenBy(SecondArgumentSort);
+            }
+            else
+            {
+                result = _clients.AsQueryable().OrderBy(FirstArgumentSort);
+            }
             return result;
         }
 
@@ -228,8 +237,14 @@ namespace Home_Work_11_2.ViewModels
         public ICommand SortClientCommand { get; set; }
         private bool CanSortClient(object obj)
         {
-            //return (!string.IsNullOrEmpty(FirstSortParameter) && !string.IsNullOrEmpty(FirstSortDirection));
-            return true;
+            firstCondition = !string.IsNullOrEmpty(FirstSortParameter) && !string.IsNullOrEmpty(FirstSortDirection);
+
+            secondCondition = !string.IsNullOrEmpty(FirstSortParameter) && !string.IsNullOrEmpty(FirstSortDirection) &&
+                !string.IsNullOrEmpty(SecondSortParameter) && !string.IsNullOrEmpty(SecondSortDirection);
+            
+            resultCondition = firstCondition || secondCondition;
+            
+            return resultCondition;
         }
         private void SortClient(object obj)
         {
@@ -237,12 +252,13 @@ namespace Home_Work_11_2.ViewModels
 
             FilteredClients = new ObservableCollection<Client>(SortClientMethod(FilteredClients));
 
+            FirstSortParameter = "";
+            SecondSortParameter = "";
+            FirstSortDirection = "";
+            SecondSortDirection = "";
+
             sortClientWindow?.Close();
 
-            //foreach (var client in FilteredClients)
-            //{
-            //    Debug.WriteLine($"{client.SecondName}");
-            //}
         }
         #endregion Команда сортировки
         
