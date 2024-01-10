@@ -233,12 +233,13 @@ namespace Home_Work_11_2.ViewModels
         #endregion Команды
 
         #region Реализация интерфейса INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
 
+        public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #endregion Реализация интерфейса INotifyPropertyChanged
     }
 }

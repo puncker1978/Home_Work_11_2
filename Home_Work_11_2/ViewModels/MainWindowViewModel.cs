@@ -78,7 +78,7 @@ namespace Home_Work_11_2.ViewModels
         }
         public static string? Position { get; set; }
         public static Client? SelectedClient { get; set; }
-        public ObservableCollection<Client> FilteredClients
+        public ObservableCollection<Client>? FilteredClients
         {
             get => filteredClients;
             set
@@ -182,12 +182,12 @@ namespace Home_Work_11_2.ViewModels
             ShowEditClientWindowCommand = new RelayCommand(ShowEditClientWindow, CanShowEditClientWindow);
             SearchClientCommand = new RelayCommand(SearchClient, CanSearchClient);
             ShowSortClientWindowCommand = new RelayCommand(ShowSortClientWindow, CanShowSortClientWindow);
-            //SortClientCommand = new RelayCommand(SortClient, CanSortClient);
+            SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
 
         public MainWindowViewModel()
         {
-            Clients = Repository.GetClients();
+            //Clients = Repository.GetClients();
             FilteredClients = Repository.GetClients();
             SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
@@ -212,7 +212,10 @@ namespace Home_Work_11_2.ViewModels
         //Сортировка по фамилии по возрастанию с использованием Dynamic LINQ
         static private IEnumerable<Client> SortClientMethod(ObservableCollection<Client> _clients)
         {
-            FirstArgumentSort = sortParameterDictionary[FirstSortParameter] + " " + sortDirectionDictionary[FirstSortDirection];
+            if (!string.IsNullOrEmpty(FirstSortParameter) && !string.IsNullOrEmpty(FirstSortDirection))
+            {
+                FirstArgumentSort = sortParameterDictionary[FirstSortParameter] + " " + sortDirectionDictionary[FirstSortDirection];
+            }
             
             IEnumerable<Client>? result;
             //IEnumerable<Client>? result = _clients.AsQueryable().OrderBy("SecondName asc");
@@ -251,14 +254,12 @@ namespace Home_Work_11_2.ViewModels
             SortClientWindow? sortClientWindow = Application.Current.Windows.OfType<SortClientWindow>().SingleOrDefault(x => x.IsActive);
 
             FilteredClients = new ObservableCollection<Client>(SortClientMethod(FilteredClients));
-
             FirstSortParameter = "";
             SecondSortParameter = "";
             FirstSortDirection = "";
             SecondSortDirection = "";
 
             sortClientWindow?.Close();
-
         }
         #endregion Команда сортировки
         
@@ -345,7 +346,10 @@ namespace Home_Work_11_2.ViewModels
         }
         private void DeleteClient(object obj)
         {
-            Repository.RemoveClient(SelectedClient);
+            if (SelectedClient != null)
+            {
+                Repository.RemoveClient(SelectedClient);
+            }
         }
         #endregion
 

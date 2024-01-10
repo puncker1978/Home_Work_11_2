@@ -1,19 +1,17 @@
-﻿<Window
-    x:Class="Home_Work_11_2.Views.SortClientWindow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:Home_Work_11_2.ViewModels"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="Сортировка"
-    Width="600"
-    Height="250"
-    mc:Ignorable="d">
-
+﻿<Window x:Class="Home_Work_11_2.Views.SortClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Home_Work_11_2.Views"
+        xmlns:vm="clr-namespace:Home_Work_11_2.ViewModels"
+        mc:Ignorable="d"
+        Title="SortClientWindow" Height="250" Width="600">
+    
     <Window.DataContext>
-        <local:MainWindowViewModel />
+        <vm:MainWindowViewModel/>
     </Window.DataContext>
-
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.6*" />
@@ -28,80 +26,80 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock
-            Grid.Row="0"
-            Grid.Column="0"
-            Height="20"
-            Margin="10,0,0,0"
-            VerticalAlignment="Center"
-            Text="Столбец" />
+    Grid.Row="0"
+    Grid.Column="0"
+    Height="20"
+    Margin="10,0,0,0"
+    VerticalAlignment="Center"
+    Text="Столбец" />
 
         <TextBlock
-            Grid.Row="0"
-            Grid.Column="2"
-            Height="20"
-            Margin="30,0,0,0"
-            VerticalAlignment="Center"
-            Text="Порядок" />
+    Grid.Row="0"
+    Grid.Column="2"
+    Height="20"
+    Margin="30,0,0,0"
+    VerticalAlignment="Center"
+    Text="Порядок" />
 
         <TextBlock
-            Grid.Row="1"
-            Grid.Column="0"
-            Height="20"
-            Margin="10,0,0,0"
-            VerticalAlignment="Center"
-            Text="Сортировать по" />
+    Grid.Row="1"
+    Grid.Column="0"
+    Height="20"
+    Margin="10,0,0,0"
+    VerticalAlignment="Center"
+    Text="Сортировать по" />
 
         <TextBlock
-            Grid.Row="2"
-            Grid.Column="0"
-            Height="20"
-            Margin="10,0,0,0"
-            VerticalAlignment="Center"
-            Text="Затем по" />
+    Grid.Row="2"
+    Grid.Column="0"
+    Height="20"
+    Margin="10,0,0,0"
+    VerticalAlignment="Center"
+    Text="Затем по" />
 
         <ComboBox
-            Grid.Row="1"
-            Grid.Column="1"
-            Width="180"
-            Height="30"
-            Margin="10"
-            ItemsSource="{Binding ColNames}"
-            SelectedItem="{Binding FirstSortParameter, UpdateSourceTrigger=PropertyChanged}" />
+    Grid.Row="1"
+    Grid.Column="1"
+    Width="180"
+    Height="30"
+    Margin="10"
+    ItemsSource="{Binding ColNames}"
+    SelectedItem="{Binding FirstSortParameter, UpdateSourceTrigger=PropertyChanged}" />
 
         <ComboBox
-            Grid.Row="2"
-            Grid.Column="1"
-            Width="180"
-            Height="30"
-            Margin="10"
-            ItemsSource="{Binding ColNames}"
-            SelectedItem="{Binding SecondSortParameter, UpdateSourceTrigger=PropertyChanged}" />
+    Grid.Row="2"
+    Grid.Column="1"
+    Width="180"
+    Height="30"
+    Margin="10"
+    ItemsSource="{Binding ColNames}"
+    SelectedItem="{Binding SecondSortParameter, UpdateSourceTrigger=PropertyChanged}" />
 
         <ComboBox
-            Grid.Row="1"
-            Grid.Column="2"
-            Width="180"
-            Height="30"
-            Margin="10"
-            ItemsSource="{Binding SortDirection}"
-            SelectedItem="{Binding FirstSortDirection, UpdateSourceTrigger=PropertyChanged}" />
+    Grid.Row="1"
+    Grid.Column="2"
+    Width="180"
+    Height="30"
+    Margin="10"
+    ItemsSource="{Binding SortDirection}"
+    SelectedItem="{Binding FirstSortDirection, UpdateSourceTrigger=PropertyChanged}" />
 
         <ComboBox
-            Grid.Row="2"
-            Grid.Column="2"
-            Width="180"
-            Height="30"
-            Margin="10"
-            ItemsSource="{Binding SortDirection}"
-            SelectedItem="{Binding SecondSortDirection, UpdateSourceTrigger=PropertyChanged}" />
+    Grid.Row="2"
+    Grid.Column="2"
+    Width="180"
+    Height="30"
+    Margin="10"
+    ItemsSource="{Binding SortDirection}"
+    SelectedItem="{Binding SecondSortDirection, UpdateSourceTrigger=PropertyChanged}" />
 
         <Button
-            Grid.Row="3"
-            Grid.ColumnSpan="3"
-            Width="100"
-            Height="30"
-            Command="{Binding SortClientCommand, UpdateSourceTrigger=PropertyChanged}"
-            CommandTarget="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
-            Content="Ok" />
+    Grid.Row="3"
+    Grid.ColumnSpan="3"
+    Width="100"
+    Height="30"
+    Command="{Binding SortClientCommand, UpdateSourceTrigger=PropertyChanged}"
+    CommandTarget="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
+    Content="Ok" />
     </Grid>
 </Window>
