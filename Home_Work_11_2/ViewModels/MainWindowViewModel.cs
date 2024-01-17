@@ -88,6 +88,10 @@ namespace Home_Work_11_2.ViewModels
                     filteredClients = value;
                     NotifyPropertyChanged(nameof(FilteredClients));
                 }
+                else
+                {
+                    return;
+                }
             }
         }
         public ObservableCollection<Client> Clients

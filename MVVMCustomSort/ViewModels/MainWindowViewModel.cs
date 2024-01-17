@@ -8,10 +8,11 @@ using System.Windows.Input;
 using System.Linq.Dynamic.Core;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Diagnostics;
 
 namespace MVVMCustomSort.ViewModels
 {
-    class MainViewModel : INotifyPropertyChanged
+    class MainWindowViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<Person> _persons;
         public ObservableCollection<Person> Persons
@@ -19,10 +20,10 @@ namespace MVVMCustomSort.ViewModels
             get { return _persons; }
             set
             {
-                if(value != _persons)
+                if (value != _persons)
                 {
                     _persons = value;
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(Persons));
                 }
             }
         }
@@ -33,7 +34,7 @@ namespace MVVMCustomSort.ViewModels
             return result;
         }
 
-        public MainViewModel()
+        public MainWindowViewModel()
         {
             Persons = PersonDB.GetPersons();
             ShowWindowCommand = new RelayCommand(ShowWindow, CanShowWindow);
@@ -74,12 +75,16 @@ namespace MVVMCustomSort.ViewModels
         private bool CanSortPerson(object obj) => true;
         private void SortPerson(object obj)
         {
-            
+
             //Получить ссылку на текущее окно
             SortWindow? sortWindow = Application.Current.Windows.OfType<SortWindow>().SingleOrDefault(x => x.IsActive);
 
             Persons = new ObservableCollection<Person>(SortClientMethod(Persons));
-            
+            foreach (var p in Persons)
+            {
+                Debug.WriteLine(p.Name);
+            }
+
             // Закрыть текущее окно
             sortWindow?.Close();
 
