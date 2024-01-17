@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionSort", "Reflectio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCustomSortProject", "MyCustomSortProject\MyCustomSortProject.csproj", "{AD249CA7-9B36-46D3-B246-A8C45504362A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMCustomSort", "MVVMCustomSort\MVVMCustomSort.csproj", "{B65FBFA5-9FE9-4671-B1DA-43BD14444169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVMCustomSort1", "MVVMCustomSort\MVVMCustomSort1.csproj", "{B65FBFA5-9FE9-4671-B1DA-43BD14444169}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMCustomSort2", "MVVMCustomSort2\MVVMCustomSort2.csproj", "{0B0D5167-C539-40C4-A3F4-8E3A3A6ACE59}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{B65FBFA5-9FE9-4671-B1DA-43BD14444169}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B65FBFA5-9FE9-4671-B1DA-43BD14444169}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B65FBFA5-9FE9-4671-B1DA-43BD14444169}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B0D5167-C539-40C4-A3F4-8E3A3A6ACE59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0D5167-C539-40C4-A3F4-8E3A3A6ACE59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0D5167-C539-40C4-A3F4-8E3A3A6ACE59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0D5167-C539-40C4-A3F4-8E3A3A6ACE59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

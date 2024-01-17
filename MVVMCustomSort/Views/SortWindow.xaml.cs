@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace MVVMCustomSort.Views
+namespace MVVMCustomSort2.Views
 {
     /// <summary>
     /// Логика взаимодействия для SortWindow.xaml

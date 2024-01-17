@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace MVVMCustomSort
+namespace MVVMCustomSort2
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 namespace MVVMCustomSort2.Data
 {
-    class PersonDB
+    internal static class PersonDB
     {
         public static ObservableCollection<Person> Persons = new ObservableCollection<Person>()
         {

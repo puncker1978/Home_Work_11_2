@@ -1,0 +1,52 @@
+﻿<Window
+    x:Class="MVVMCustomSort2.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MVVMCustomSort2.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:MVVMCustomSort2.ViewModels"
+    Title="MainWindow"
+    Width="400"
+    Height="600"
+    mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid Background="#F5F5F5">
+            <Grid
+                Grid.Row="1"
+                Margin="25,40,25,15"
+                Background="White">
+                <Button
+                    Width="100"
+                    Height="30"
+                    Margin="25"
+                    Padding="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    VerticalContentAlignment="Center"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1"
+                    Command="{Binding ShowSortWindowCommand, UpdateSourceTrigger=PropertyChanged}"
+                    Content="Sorting" />
+
+                <ListView
+                    Name="UserList"
+                    Margin="25,70,25,25"
+                    Padding="0"
+                    BorderBrush="#cdcdcd"
+                    ItemsSource="{Binding Persons, UpdateSourceTrigger=PropertyChanged}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Header="Имя" />
+                            <GridViewColumn DisplayMemberBinding="{Binding Age, UpdateSourceTrigger=PropertyChanged}" Header="Возраст" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>

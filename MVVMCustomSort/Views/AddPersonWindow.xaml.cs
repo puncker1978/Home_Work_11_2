@@ -1,4 +1,4 @@
-﻿using MVVMCustomSort.ViewModels;
+﻿using MVVMCustomSort2.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace MVVMCustomSort.Views
+namespace MVVMCustomSort2.Views
 {
     /// <summary>
     /// Логика взаимодействия для AddPersonWindow.xaml

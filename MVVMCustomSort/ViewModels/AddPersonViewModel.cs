@@ -1,13 +1,13 @@
-﻿using MVVMCustomSort.Data;
-using MVVMCustomSort.Models;
-using MVVMCustomSort.Utilities;
-using MVVMCustomSort.Views;
+﻿using MVVMCustomSort2.Data;
+using MVVMCustomSort2.Models;
+using MVVMCustomSort2.Utilities;
+using MVVMCustomSort2.Views;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows;
 
-namespace MVVMCustomSort.ViewModels
+namespace MVVMCustomSort2.ViewModels
 {
     class AddPersonViewModel : INotifyPropertyChanged
     {
