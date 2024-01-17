@@ -48,16 +48,16 @@ namespace MVVMCustomSort2.ViewModels
         {
             Persons = PersonDB.GetPersons();
             SortPersonCommand = new RelayCommand(SortPerson, CanSortPerson);
-            ShowSortWindowCommand = new RelayCommand(ShowSortWindow, CanShowSortWindow);
+            ShowSortParameterWindowCommand = new RelayCommand(ShowSortParameterWindow, CanShowSortParameterWindow);
         }
         #endregion Конструкторы
 
         #region Команды
 
         #region Команда открытия окна для сортировки персон
-        public ICommand ShowSortWindowCommand { get; set; }
-        private bool CanShowSortWindow(object obj) => true;
-        private void ShowSortWindow(object obj)
+        public ICommand ShowSortParameterWindowCommand { get; set; }
+        private bool CanShowSortParameterWindow(object obj) => true;
+        private void ShowSortParameterWindow(object obj)
         {
             var mainWindow = obj as MainWindow;
             SortWindow sortWindow = new SortWindow
@@ -96,7 +96,7 @@ namespace MVVMCustomSort2.ViewModels
         /// <summary>Событие для извещения об изменения свойства</summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
