@@ -19,6 +19,5 @@
         Height="50"
         Command="{Binding SortPersonCommand, UpdateSourceTrigger=PropertyChanged}"
         CommandParameter="{Binding Persons}"
-        CommandTarget="{Binding Path=UserList}"
         Content="Сортировка" />
 </Window>
