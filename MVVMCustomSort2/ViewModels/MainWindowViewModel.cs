@@ -88,7 +88,6 @@ namespace MVVMCustomSort2.ViewModels
             sortWindow?.Close();
 
         }
-        #endregion Команда сортировки персон
 
         #endregion Команды
 

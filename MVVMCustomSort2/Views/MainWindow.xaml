@@ -20,7 +20,6 @@
                 Margin="25,40,25,15"
                 Background="White">
                 <Button
-                    Width="100"
                     Height="30"
                     Margin="25"
                     Padding="1"
