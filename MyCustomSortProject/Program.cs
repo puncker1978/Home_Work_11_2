@@ -25,7 +25,7 @@ namespace MyCustomSortProject
 
             static IEnumerable<Person> SortCollection(IEnumerable<Person> collection)
             {
-                return collection.AsQueryable().OrderBy("LastName asc").ToList();
+                return [.. collection.AsQueryable().OrderBy("LastName asc")];
             }
 
             IEnumerable<Person> sortedPersons = SortCollection(Persons);

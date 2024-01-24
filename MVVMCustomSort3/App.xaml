@@ -1,9 +1,0 @@
-﻿<Application x:Class="MVVMCustomSort3.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:MVVMCustomSort3"
-             StartupUri="Views/SortWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
-</Application>
