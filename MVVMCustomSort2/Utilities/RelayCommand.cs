@@ -27,7 +27,7 @@ namespace MVVMCustomSort2.Utilities
         /// <summary>Вызов разрешающего метода команды</summary>
         /// <param name="parameter">Параметр команды</param>
         /// <returns>True - если выполнение команды разрешено</returns>
-        public bool CanExecute(object parameter) => _canExecute == null ? true : _canExecute.Invoke(parameter);
+        public bool CanExecute(object parameter) => _canExecute == null || _canExecute.Invoke(parameter);
 
         /// <summary>Вызов выполняющего метода команды</summary>
         /// <param name="parameter">Параметр команды</param>

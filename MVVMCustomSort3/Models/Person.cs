@@ -1,9 +1,14 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace MVVMCustomSort2.Models
+namespace MVVMCustomSort3.Models
 {
-    class Person : INotifyPropertyChanged
+    internal class Person : INotifyPropertyChanged
     {
         private string name;
         private int? age;

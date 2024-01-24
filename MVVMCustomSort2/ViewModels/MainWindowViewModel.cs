@@ -7,10 +7,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Linq.Dynamic.Core;
+using System.Runtime.CompilerServices;
 
 namespace MVVMCustomSort2.ViewModels
 {
@@ -23,10 +23,11 @@ namespace MVVMCustomSort2.ViewModels
         #region Свойства
         public ObservableCollection<Person> Persons
         {
-            get { return persons; }
+            get => persons; 
             set
             {
-                if (value != persons)
+                if (value == persons) return;
+                else
                 {
                     persons = value;
                     OnPropertyChanged(nameof(Persons));
@@ -36,7 +37,7 @@ namespace MVVMCustomSort2.ViewModels
         #endregion Свойства
 
         #region Методы
-        static private IEnumerable<Person> SortClientMethod(ObservableCollection<Person> _persons)
+        static private IEnumerable<Person> SortClientMethod(IEnumerable<Person> _persons)
         {
             IEnumerable<Person> result = _persons.AsQueryable().OrderBy("Name asc");
             return result;
@@ -74,11 +75,12 @@ namespace MVVMCustomSort2.ViewModels
         private bool CanSortPerson(object obj) => true;
         private void SortPerson(object obj)
         {
-
             //Получить ссылку на текущее окно
+            IEnumerable<Person> Persons = (IEnumerable<Person>)obj;
             SortWindow sortWindow = Application.Current.Windows.OfType<SortWindow>().SingleOrDefault(x => x.IsActive);
 
             Persons = new ObservableCollection<Person>(SortClientMethod(Persons));
+
             foreach (var p in Persons)
             {
                 Debug.WriteLine(p.Name);
@@ -88,6 +90,7 @@ namespace MVVMCustomSort2.ViewModels
             sortWindow?.Close();
 
         }
+        #endregion Команда сортировки персон
 
         #endregion Команды
 
@@ -95,7 +98,7 @@ namespace MVVMCustomSort2.ViewModels
         /// <summary>Событие для извещения об изменения свойства</summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
