@@ -195,6 +195,7 @@ namespace Home_Work_11_2.ViewModels
             FilteredClients = Repository.GetClients();
             SortClientCommand = new RelayCommand(SortClient, CanSortClient);
         }
+
         #endregion Конструкторы
 
         #region Методы
