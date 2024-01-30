@@ -102,7 +102,7 @@
             Width="100"
             Height="30"
             Command="{Binding SortClientCommand, UpdateSourceTrigger=PropertyChanged}"
-            CommandTarget="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
+            CommandParameter="{Binding ElementName=ClientList, Path=FilteredClients}"
             Content="Ok" />
     </Grid>
 </Window>

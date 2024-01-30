@@ -223,7 +223,7 @@ namespace Home_Work_11_2.ViewModels
             }
             
             IEnumerable<Client>? result;
-            //IEnumerable<Client>? result = _clients.AsQueryable().OrderBy("SecondName asc");
+
             if (!string.IsNullOrEmpty(SecondSortParameter) && !string.IsNullOrEmpty(SecondSortDirection))
             {
                 SecondArgumentSort = sortParameterDictionary[SecondSortParameter] + " " + sortDirectionDictionary[SecondSortDirection];

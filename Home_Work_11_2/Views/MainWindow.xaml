@@ -71,7 +71,7 @@
                 Padding="0"
                 BorderBrush="#cdcdcd"
                 FontSize="20"
-                ItemsSource="{Binding Path=FilteredClients, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding SelectedClient, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ContextMenu>
                     <ContextMenu>
