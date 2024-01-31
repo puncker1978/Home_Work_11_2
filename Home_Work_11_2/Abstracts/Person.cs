@@ -2,20 +2,71 @@
 {
     public abstract class Person
     {
-        public Guid Id { get; set; }
+        #region Поля
+        private Guid id;
+        private string secondName;
+        private string firstName;
+        private string thirdName;
+        #endregion
 
-        public string FirstName { get; set; }
+        #region Свойства
+        public Guid Id
+        {
+            get => id;
+            set
+            {
+                if (id != value)
+                {
+                    id = value;
+                }
+            }
+        }
+        public string SecondName
+        {
+            get => secondName;
+            set
+            {
+                if (secondName != value)
+                {
+                    secondName = value;
+                }
+            }
+        }
+        public string FirstName
+        {
+            get => firstName;
+            set
+            {
+                if (firstName != value)
+                {
+                    firstName = value;
+                }
+            }
+        }
+        public string ThirdName
+        {
+            get => thirdName;
+            set
+            {
+                if (thirdName != value)
+                {
+                    thirdName = value;
+                }
+            }
+        }
+        #endregion
 
-        public string SecondName { get; set; }
-
-        public string ThirdName { get; set; }
-
-        protected Person(string firstName, string secondName, string thirdName)
+        #region Конструкторы
+        protected Person()
+        {
+        }
+        protected Person(string _firstName, string _secondName, string _thirdName)
         {
             Id = Guid.NewGuid();
-            FirstName = firstName;
-            SecondName = secondName;
-            ThirdName = thirdName;
+            FirstName = _firstName;
+            SecondName = _secondName;
+            ThirdName = _thirdName;
         }
+        #endregion
     }
 }

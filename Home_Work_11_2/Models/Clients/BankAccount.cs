@@ -2,21 +2,12 @@
 {
     public class BankAccount
     {
+        #region Поля
         private Guid id;
         private decimal sum;
+        #endregion
 
-        public Guid Id
-        {
-            get => id;
-            set
-            {
-                if (id != value)
-                {
-                    id = value;
-                }
-            }
-        }
-
+        #region Свойства
         public decimal Sum
         {
             get => sum;
@@ -28,7 +19,24 @@
                 }
             }
         }
+        public Guid Id
+        {
+            get => id;
+            set
+            {
+                if (id != value)
+                {
+                    id = value;
+                }
+            }
+        }
+        #endregion
 
+        #region Конструктор
+        public BankAccount()
+        {
+
+        }
         /// <summary>
         /// Конструктор для создания нового банковского счёта
         /// </summary>
@@ -38,5 +46,6 @@
             Id = Guid.NewGuid();
             Sum = _sum;
         }
+        #endregion
     }
 }

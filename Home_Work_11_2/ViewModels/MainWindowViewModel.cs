@@ -58,6 +58,10 @@ namespace Home_Work_11_2.ViewModels
         private static bool secondCondition;
         private static bool resultCondition;
 
+        private string secondName;
+        private string firstName;
+        private string thirdName;
+
         #endregion Поля
 
         #region Свойства
@@ -78,22 +82,6 @@ namespace Home_Work_11_2.ViewModels
         }
         public static string? Position { get; set; }
         public static Client? SelectedClient { get; set; }
-        public ObservableCollection<Client>? FilteredClients
-        {
-            get => filteredClients;
-            set
-            {
-                if (value != filteredClients)
-                {
-                    filteredClients = value;
-                    NotifyPropertyChanged(nameof(FilteredClients));
-                }
-                else
-                {
-                    return;
-                }
-            }
-        }
         public ObservableCollection<Client> Clients
         {
             get => clients;
@@ -103,6 +91,18 @@ namespace Home_Work_11_2.ViewModels
                 {
                     clients = value;
                     NotifyPropertyChanged(nameof(Clients));
+                }
+            }
+        }
+        public ObservableCollection<Client>? FilteredClients
+        {
+            get => filteredClients;
+            set
+            {
+                if (value != filteredClients)
+                {
+                    filteredClients = value;
+                    NotifyPropertyChanged(nameof(FilteredClients));
                 }
             }
         }

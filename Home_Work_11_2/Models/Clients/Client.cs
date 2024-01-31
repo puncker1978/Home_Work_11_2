@@ -18,21 +18,6 @@ namespace Home_Work_11_2.Models.Clients
 
         #region Свойства
         /// <summary>
-        /// Адрес клиента
-        /// </summary>
-        public Address Address { get; set; }
-
-        /// <summary>
-        /// Паспорт клиента
-        /// </summary>
-        public Passport Passport { get; set; }
-
-        /// <summary>
-        /// Банковский счёт клиента
-        /// </summary>
-        public BankAccount BankAccount { get; set; }
-
-        /// <summary>
         /// Уникальный идентификационный номер клиента
         /// </summary>
         public Guid Id
@@ -61,6 +46,25 @@ namespace Home_Work_11_2.Models.Clients
                 }
             }
         }
+
+        /// <summary>
+        /// Адрес клиента
+        /// </summary>
+        public Address Address { get; set; }
+
+        /// <summary>
+        /// Паспорт клиента
+        /// </summary>
+        public Passport Passport { get; set; }
+
+        /// <summary>
+        /// Банковский счёт клиента
+        /// </summary>
+        public BankAccount BankAccount { get; set; }
+
+       
+
+
 
         #endregion
 
