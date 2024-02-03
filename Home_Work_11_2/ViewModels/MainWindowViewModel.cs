@@ -13,6 +13,7 @@ using System.Linq.Dynamic.Core;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Windows.Controls;
 
 namespace Home_Work_11_2.ViewModels
 {
@@ -58,10 +59,6 @@ namespace Home_Work_11_2.ViewModels
         private static bool secondCondition;
         private static bool resultCondition;
 
-        private string secondName;
-        private string firstName;
-        private string thirdName;
-
         #endregion Поля
 
         #region Свойства
@@ -99,7 +96,7 @@ namespace Home_Work_11_2.ViewModels
             get => filteredClients;
             set
             {
-                if (value != filteredClients)
+                if (filteredClients != value)
                 {
                     filteredClients = value;
                     NotifyPropertyChanged(nameof(FilteredClients));
@@ -363,9 +360,17 @@ namespace Home_Work_11_2.ViewModels
         #region Реализация интерфейса INotifyPropertyChanged
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = "")
+        //protected virtual void NotifyPropertyChanged([CallerMemberName] string? propertyName = "")
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
+
+        protected virtual void NotifyPropertyChanged(string propertyName)
+
         {
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
         }
         #endregion Реализация интерфейса INotifyPropertyChanged
     }

@@ -39,17 +39,16 @@
                     Width="130"
                     Margin="100,25"
                     VerticalAlignment="Top"
-                    CommandTarget="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding ShowSortClientWindowCommand, UpdateSourceTrigger=PropertyChanged}"
                     Content="Сортировка" />
-                <Button
+                <!--<Button
                     x:Name="SortButton1"
                     Width="130"
                     Margin="0,25,10,0"
                     VerticalAlignment="Top"
                     CommandTarget="{Binding FilteredClients, UpdateSourceTrigger=PropertyChanged}"
                     Command="{Binding SortClientCommand, UpdateSourceTrigger=PropertyChanged}"
-                    Content="Сорт здесь" />
+                    Content="Сорт здесь" />-->
             </StackPanel>
 
             <Button
